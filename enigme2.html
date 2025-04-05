@@ -52,10 +52,19 @@
         button:hover {
             background-color: #45a049;
         }
-        .error {
-            color: red;
+        .error, .success {
             text-align: center;
             font-size: 18px;
+            display: none;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .next-button {
+            display: none;
         }
     </style>
 </head>
@@ -85,7 +94,11 @@
             </div>
             <button type="submit">Valider</button>
         </form>
-        <div id="error-message" class="error" style="display: none;">Tu n'es pas digne de continuer ! Réessaie !</div>
+        <div id="error-message" class="error">Tu n'es pas digne de continuer ! Réessaie !</div>
+        <div id="success-message" class="success">Félicitations, tu es digne de chercher le PCG légendaire !</div>
+        <button id="next-button" class="next-button" onclick="window.location.href='https://Alanjht.github.io/pcg-legendaire/enigme2.html'">
+            Passer à l'énigme suivante
+        </button>
     </div>
 
     <script>
@@ -114,9 +127,10 @@
                 }
             }
 
-            // Si toutes les réponses sont correctes, rediriger vers la deuxième énigme
+            // Si toutes les réponses sont correctes, afficher un message de succès et un bouton pour l'énigme suivante
             if (correct) {
-                window.location.href = 'https://Alanjht.github.io/pcg-legendaire/enigme3.html'; // Remplace par le lien de ta page suivante
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('next-button').style.display = 'block';
             } else {
                 // Afficher un message d'erreur et réinitialiser le formulaire
                 document.getElementById('error-message').style.display = 'block';
