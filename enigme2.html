@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PCG Légendaire - Deuxième Énigme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .quiz-container {
+            margin-top: 30px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Deuxième Énigme - PCG Légendaire</h1>
+        
+        <div class="quiz-container">
+            <form id="quizForm">
+                <label>Quel est le compte "Banque" ?</label>
+                <input type="text" name="q1" required />
+                
+                <label>Quel est le compte "Clients" ?</label>
+                <input type="text" name="q2" required />
+                
+                <label>Quel est le compte "Capital social" ?</label>
+                <input type="text" name="q3" required />
+                
+                <label>Quel est le compte "Achats de marchandises" ?</label>
+                <input type="text" name="q4" required />
+                
+                <label>Quel est le compte "TVA collectée" ?</label>
+                <input type="text" name="q5" required />
+
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+
+        <button id="continueButton" onclick="window.location.href='https://ton-nom-utilisateur.github.io/nom-du-repository/enigme3.html'">Passer à la troisième énigme</button>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                q1: ['512', '512 banque', 'banque 512'], 
+                q2: ['411', '411 clients', 'clients 411'], 
+                q3: ['101', '101 capital social', 'capital social 101'], 
+                q4: ['607', '607 achats', 'achats 607'], 
+                q5: ['4457', '4457 tva collectée', 'tva collectée 4457', '44571'] 
+            };
+
+            const form = event.target;
+            let correct = true;
+
+            for (let key in answers) {
+                const userAnswer = form[key].value.trim().toLowerCase();
+                const validAnswers = answers[key].map(ans => ans.trim().toLowerCase());
+                if (!validAnswers.includes(userAnswer)) {
+                    correct = false;
+                    break;
+                }
+            }
+
+            if (correct) {
+                document.getElementById('continueButton').style.display = 'block'; // Afficher le bouton
+            } else {
+                alert('Certaines réponses sont incorrectes. Réessaie !');
+                form.reset(); // Réinitialiser le formulaire en cas d'échec
+            }
+        });
+    </script>
+</body>
+</html>
