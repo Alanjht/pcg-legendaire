@@ -23,6 +23,13 @@
             text-align: center;
             color: #333;
         }
+        .intro-text {
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
         .question {
             margin: 20px 0;
         }
@@ -70,76 +77,19 @@
 </head>
 <body>
     <div class="quiz-container">
-        <h2>Quiz sur le PCG - Enigme 1</h2>
+        <h2>Enigme I</h2>
+        
+        <!-- Introduction texte -->
+        <div class="intro-text">
+            <p>Face à toi se dresse le premier verrou du PCG Légendaire. Depuis des siècles, cette énigme attend celui ou celle qui saura prouver sa véritable valeur. Madame TESTE, dans sa grande vigilance, l’a conçue pour écarter les curieux et ne laisser passer que l’héritier légitime de la comptabilité.</p>
+            <p>"Afin d'être digne de continuer, tu dois prouver ta valeur en résolvant une énigme que tout comptable doit savoir résoudre." Car tel est le premier critère pour prétendre approcher le pouvoir infini du PCG Légendaire : démontrer la maîtrise des fondamentaux, ceux sans lesquels aucun équilibre comptable ne saurait exister.</p>
+            <p>Ceux qui échouent sombrent dans la confusion des comptes, mais ceux qui réussissent… entrevoient les mystères de la régularisation et de la balance parfaite.</p>
+            <p>Prépare ton esprit, future légende de la comptabilité. L’épreuve commence.</p>
+        </div>
+
         <form id="quizForm">
             <div class="question">
                 <label for="q1">1. Quel est le numéro de compte pour la Banque ?</label>
                 <input type="text" id="q1" name="q1" required>
             </div>
             <div class="question">
-                <label for="q2">2. Quel est le numéro de compte pour les Clients ?</label>
-                <input type="text" id="q2" name="q2" required>
-            </div>
-            <div class="question">
-                <label for="q3">3. Quel est le numéro de compte pour le Capital Social ?</label>
-                <input type="text" id="q3" name="q3" required>
-            </div>
-            <div class="question">
-                <label for="q4">4. Quel est le numéro de compte pour les Achats de marchandises ?</label>
-                <input type="text" id="q4" name="q4" required>
-            </div>
-            <div class="question">
-                <label for="q5">5. Quel est le numéro de compte pour la TVA collectée ?</label>
-                <input type="text" id="q5" name="q5" required>
-            </div>
-            <button type="submit">Valider</button>
-        </form>
-        <div id="error-message" class="error">Tu n'es pas digne de continuer ! Réessaie !</div>
-        <div id="success-message" class="success">Félicitations, tu es digne de chercher le PCG légendaire !</div>
-        <button id="next-button" class="next-button" onclick="window.location.href='https://Alanjht.github.io/pcg-legendaire/enigme2.html'">
-            Passer à l'énigme suivante
-        </button>
-    </div>
-
-    <script>
-        document.getElementById('quizForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Réponses valides
-            const answers = {
-                q1: ['512', '512 banque', 'banque 512'],
-                q2: ['411', '411 clients', 'clients 411'],
-                q3: ['101', '101 capital social', 'capital social 101'],
-                q4: ['607', '607 achats', 'achats 607'],
-                q5: ['4457', '4457 tva collectée', 'tva collectée 4457', '44571']
-            };
-
-            const form = event.target;
-            let correct = true;
-
-            // Vérifier les réponses
-            for (let key in answers) {
-                const userAnswer = form[key].value.trim().toLowerCase();
-                const validAnswers = answers[key].map(ans => ans.trim().toLowerCase());
-                if (!validAnswers.includes(userAnswer)) {
-                    correct = false;
-                    break;
-                }
-            }
-
-            // Si toutes les réponses sont correctes, afficher un message de succès et un bouton pour l'énigme suivante
-            if (correct) {
-                document.getElementById('success-message').style.display = 'block';
-                document.getElementById('next-button').style.display = 'block';
-            } else {
-                // Afficher un message d'erreur et réinitialiser le formulaire
-                document.getElementById('error-message').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('error-message').style.display = 'none';
-                    form.reset(); // Réinitialiser les champs du formulaire
-                }, 2000); // Masquer le message après 2 secondes
-            }
-        });
-    </script>
-</body>
-</html>
