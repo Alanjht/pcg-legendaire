@@ -27,16 +27,17 @@
             color: #555;
             margin-bottom: 30px;
         }
-        .code-container {
+        .quiz-container {
             display: flex;
-            justify-content: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        input[type="number"] {
-            width: 50px;
-            height: 40px;
-            font-size: 20px;
-            text-align: center;
+        input[type="text"] {
+            width: 300px;
+            height: 35px;
+            font-size: 18px;
+            padding: 5px;
         }
         .button {
             background-color: #4CAF50;
@@ -58,6 +59,9 @@
         .success-message {
             color: green;
         }
+        .next-link {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -72,50 +76,78 @@
             Afin d'être digne de continuer, tu dois prouver ta valeur en résolvant une énigme que tout comptable doit savoir résoudre.
         </p>
 
-        <!-- Formulaire de l'énigme 1 (le code de l'énigme à résoudre) -->
-        <div class="code-container">
-            <input type="number" id="code1" maxlength="1" placeholder="Code 1" />
-            <input type="number" id="code2" maxlength="1" placeholder="Code 2" />
-            <input type="number" id="code3" maxlength="1" placeholder="Code 3" />
-            <input type="number" id="code4" maxlength="1" placeholder="Code 4" />
+        <!-- Questions sur les comptes du PCG -->
+        <div class="quiz-container">
+            <p>1. Quel est le code du compte "Banque" ?</p>
+            <input type="text" id="question1" placeholder="Réponse 1">
+
+            <p>2. Quel est le code du compte "Clients" ?</p>
+            <input type="text" id="question2" placeholder="Réponse 2">
+
+            <p>3. Quel est le code du compte "Capital social" ?</p>
+            <input type="text" id="question3" placeholder="Réponse 3">
+
+            <p>4. Quel est le code du compte "Achats de marchandises" ?</p>
+            <input type="text" id="question4" placeholder="Réponse 4">
+
+            <p>5. Quel est le code du compte "TVA collectée" ?</p>
+            <input type="text" id="question5" placeholder="Réponse 5">
         </div>
 
-        <button class="button" id="submitBtn">Valider le Code</button>
+        <button class="button" id="submitBtn">Valider</button>
         
-        <p class="error-message" id="errorMessage">Le code est incorrect. Réessaie !</p>
-        <p class="success-message" id="successMessage" style="display: none;">Félicitations, tu es digne de passer à la deuxième épreuve !</p>
-        <a id="nextLink" href="enigme2.html" class="button" style="display: none;">Passer à l'Énigme 2</a>
+        <!-- Messages de succès et d'erreur -->
+        <p class="error-message" id="errorMessage">Les réponses sont incorrectes. Réessaie !</p>
+        <p class="success-message" id="successMessage" style="display: none;">Félicitations, tu as réussi l'énigme 1 !</p>
+
+        <!-- Lien vers la prochaine énigme (initialement caché) -->
+        <a id="nextLink" href="enigme2.html" class="button next-link">Passer à l'énigme 2</a>
 
     </div>
 
     <script>
-        // Code du PCG à deviner pour l'énigme 1
-        const correctCode = ['5', '1', '2', '3']; // Le code secret à entrer dans les champs
+        // Les réponses correctes pour les comptes PCG
+        const correctAnswers = {
+            question1: ['512', 'banque 512', '512 banque'],
+            question2: ['411', 'clients 411', '411 clients'],
+            question3: ['101', 'capital social 101', '101 capital social'],
+            question4: ['607', 'achats 607', '607 achats'],
+            question5: ['4457', 'tva collectée 4457', '4457 tva collectée']
+        };
 
         document.getElementById('submitBtn').addEventListener('click', function() {
-            const code1 = document.getElementById('code1').value.trim();
-            const code2 = document.getElementById('code2').value.trim();
-            const code3 = document.getElementById('code3').value.trim();
-            const code4 = document.getElementById('code4').value.trim();
+            // Récupérer les réponses de l'utilisateur
+            const userAnswers = {
+                question1: document.getElementById('question1').value.trim().toLowerCase(),
+                question2: document.getElementById('question2').value.trim().toLowerCase(),
+                question3: document.getElementById('question3').value.trim().toLowerCase(),
+                question4: document.getElementById('question4').value.trim().toLowerCase(),
+                question5: document.getElementById('question5').value.trim().toLowerCase()
+            };
 
-            const userCode = [code1, code2, code3, code4];
-            
-            // Vérifier si le code est correct
-            if (JSON.stringify(userCode) === JSON.stringify(correctCode)) {
-                // Si le code est correct, stocker dans localStorage pour l'accès futur
-                localStorage.setItem('enigme1_reussie', 'true');
+            // Vérifier si toutes les réponses sont correctes
+            let isCorrect = true;
+            for (let key in correctAnswers) {
+                if (!correctAnswers[key].some(answer => userAnswers[key] === answer)) {
+                    isCorrect = false;
+                    break;
+                }
+            }
 
-                // Afficher message de succès et le bouton pour la page suivante
+            if (isCorrect) {
+                // Si l'énigme est réussie, afficher un message de succès et activer le bouton pour l'énigme suivante
+                localStorage.setItem('enigme1_reussie', 'true'); // Enregistrer dans le localStorage
                 document.getElementById('successMessage').style.display = 'block';
                 document.getElementById('nextLink').style.display = 'block';
                 document.getElementById('errorMessage').style.display = 'none';
             } else {
-                // Si le code est incorrect
+                // Si l'énigme est ratée, afficher un message d'erreur
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
                 document.getElementById('nextLink').style.display = 'none';
             }
         });
     </script>
+
 </body>
 </html>
