@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCG Légendaire - Énigme 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin: 20px 0;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error, .success {
+            text-align: center;
+            font-size: 18px;
+            display: none;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .next-button {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>PCG Légendaire - Énigme 1</h2>
+        
+        <form id="quizForm">
+            <div class="question">
+                <label for="q1">1. Quel est le numéro de compte pour la Banque ?</label>
+                <input type="text" id="q1" name="q1" required>
+            </div>
+            <div class="question">
+                <label for="q2">2. Quel est le numéro de compte pour les Clients ?</label>
+                <input type="text" id="q2" name="q2" required>
+            </div>
+            <div class="question">
+                <label for="q3">3. Quel est le numéro de compte pour le Capital Social ?</label>
+                <input type="text" id="q3" name="q3" required>
+            </div>
+            <div class="question">
+                <label for="q4">4. Quel est le numéro de compte pour les Achats de marchandises ?</label>
+                <input type="text" id="q4" name="q4" required>
+            </div>
+            <div class="question">
+                <label for="q5">5. Quel est le numéro de compte pour la TVA collectée ?</label>
+                <input type="text" id="q5" name="q5" required>
+            </div>
+            <button type="submit">Valider</button>
+        </form>
+        <div id="error-message" class="error">Tu n'es pas digne de continuer ! Réessaie !</div>
+        <div id="success-message" class="success">Félicitations, tu es digne de chercher le PCG légendaire !</div>
+        <button id="next-button" class="next-button" onclick="window.location.href='enigme2.html'">
+            Passer à l'énigme suivante
+        </button>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const answers = {
+                q1: ['512', '512 banque', 'banque 512'],
+                q2: ['411', '411 clients', 'clients 411'],
+                q3: ['101', '101 capital social', 'capital social 101'],
+                q4: ['607', '607 achats', 'achats 607'],
+                q5: ['4457', '4457 tva collectée', 'tva collectée 4457', '44571']
+            };
+
+            const form = event.target;
+            let correct = true;
+
+            for (let key in answers) {
+                const userAnswer = form[key].value.trim().toLowerCase();
+                const validAnswers = answers[key].map(ans => ans.trim().toLowerCase());
+                if (!validAnswers.includes(userAnswer)) {
+                    correct = false;
+                    break;
+                }
+            }
+
+            if (correct) {
+                document.getElementById('success-message').style.display = 'block';
+                document.getElementById('next-button').style.display = 'block';
+                sessionStorage.setItem('enigme1_reussie', 'true');
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('error-message').style.display = 'none';
+                    form.reset();
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
