@@ -42,6 +42,11 @@
       width: 60%;
     }
 
+    .instruction {
+      font-size: 0.9em;
+      color: #777;
+    }
+
     .button {
       background-color: #5a2a83;
       color: white;
@@ -74,32 +79,36 @@
   <div class="container">
     <h1>Énigme 3 - La Légende du PCG Maudit</h1>
 
-    <!-- Vérification si l'utilisateur a réussi l'énigme 2 -->
+    <!-- Vérification de l'énigme précédente -->
     <script>
       if (!localStorage.getItem('enigme2_reussie')) {
-          window.location.href = 'index.html'; // Redirige si l'énigme 2 n'a pas été validée
+          window.location.href = 'index.html'; // Redirection si énigme 2 non validée
       }
     </script>
 
     <h2>Partie 1 : Les rébus</h2>
-    <p>Résous ces deux rébus pour découvrir les expressions cachées :</p>
+    <p>Résous ces deux rébus pour découvrir les expressions cachées.</p>
+    <p class="instruction">Attention : Écris tes réponses en MAJUSCULES et en anglais !</p>
 
     <img src="gorge.png" alt="Rébus 1 - Chat dans la gorge" class="rebus-image" />
     <br>
     <input type="text" id="rebus1" placeholder="Réponse du rébus 1" />
+    <p class="instruction">Expression en anglais, en MAJUSCULES.</p>
 
     <br><br>
 
     <img src="goutte.jpg" alt="Rébus 2 - Goutte d'eau" class="rebus-image" />
     <br>
     <input type="text" id="rebus2" placeholder="Réponse du rébus 2" />
+    <p class="instruction">Expression en anglais, en MAJUSCULES.</p>
 
     <hr>
 
     <h2>Partie 2 : Le texte à trous</h2>
     <p>Complète correctement le texte suivant :</p>
     <p>
-      Lorsqu’un compte est <select id="q1">
+      Lorsqu’un compte est 
+      <select id="q1">
         <option value="">--Choisis une réponse--</option>
         <option value="crédité">crédité</option>
         <option value="débité">débité</option>
@@ -107,7 +116,8 @@
       </select>, il est augmenté si c’est un compte de passif.
     </p>
     <p>
-      Le compte <select id="q2">
+      Le compte 
+      <select id="q2">
         <option value="">--Choisis une réponse--</option>
         <option value="512">512</option>
         <option value="606">606</option>
@@ -125,14 +135,14 @@
 
   <script>
     function verifierReponses() {
-      const reponseRebus1 = document.getElementById('rebus1').value.trim().toLowerCase();
-      const reponseRebus2 = document.getElementById('rebus2').value.trim().toLowerCase();
+      const reponseRebus1 = document.getElementById('rebus1').value.trim().toUpperCase();
+      const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
       const reponseQ1 = document.getElementById('q1').value;
       const reponseQ2 = document.getElementById('q2').value;
 
       if (
-        (reponseRebus1.includes('chat') && reponseRebus1.includes('gorge')) &&
-        (reponseRebus2.includes('goutte') && reponseRebus2.includes('vase')) &&
+        reponseRebus1 === 'CAT GOT YOUR TONGUE' &&
+        reponseRebus2 === 'THE LAST STRAW' &&
         reponseQ1 === 'crédité' &&
         reponseQ2 === '512'
       ) {
@@ -140,9 +150,7 @@
         document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('nextLink').style.display = 'inline-block';
 
-        // Stocke la réussite de l'énigme 3
         localStorage.setItem('enigme3_reussie', 'true');
-
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
