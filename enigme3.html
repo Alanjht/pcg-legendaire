@@ -6,71 +6,65 @@
   <title>Énigme 3 - La Légende du PCG Maudit</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
-      color: #333;
-      text-align: center;
+      background-color: #f9f9f9;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
       padding: 20px;
-    }
-
-    h1 {
-      color: #5a2a83;
+      text-align: center;
     }
 
     .container {
       max-width: 800px;
       margin: auto;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .rebus-image {
+    h1 {
+      color: #333;
+    }
+
+    img {
       max-width: 300px;
-      height: auto;
-      margin: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      margin: 10px auto;
+      display: block;
     }
 
-    input[type="text"], select {
+    input, select {
+      margin: 5px;
       padding: 8px;
-      margin: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
-      width: 60%;
     }
 
-    .instruction {
-      font-size: 0.9em;
-      color: #777;
-    }
-
-    .button {
-      background-color: #5a2a83;
-      color: white;
-      border: none;
-      padding: 10px 20px;
+    button {
       margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
       border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    .button:hover {
-      background-color: #7a3db8;
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .success-message, .error-message {
+      margin-top: 20px;
+      font-weight: bold;
     }
 
     .success-message {
       color: green;
-      font-weight: bold;
-      margin-top: 20px;
     }
 
     .error-message {
       color: red;
-      font-weight: bold;
-      margin-top: 20px;
     }
   </style>
 </head>
@@ -79,83 +73,100 @@
   <div class="container">
     <h1>Énigme 3 - La Légende du PCG Maudit</h1>
 
-    <!-- Vérification de l'énigme précédente -->
-    <script>
-      if (!localStorage.getItem('enigme2_reussie')) {
-          window.location.href = 'index.html'; // Redirection si énigme 2 non validée
-      }
-    </script>
+    <p>Résous ces deux épreuves pour accéder à l'étape suivante ! <br><strong>⚠️ Indique tes réponses aux rébus en MAJUSCULES ⚠️</strong></p>
 
-    <h2>Partie 1 : Les rébus</h2>
-    <p>Résous ces deux rébus pour découvrir les expressions cachées.</p>
-    <p class="instruction">Attention : Écris tes réponses en MAJUSCULES et en anglais !</p>
+    <!-- Rébus 1 -->
+    <h2>Rébus 1</h2>
+    <img src="goutte.jpg" alt="Rébus 1" />
+    <input type="text" id="rebus1" placeholder="Réponse au rébus 1" />
 
-    <img src="gorge.png" alt="Rébus 1 - Chat dans la gorge" class="rebus-image" />
-    <br>
-    <input type="text" id="rebus1" placeholder="Réponse du rébus 1" />
-    <p class="instruction">Expression en anglais, en MAJUSCULES.</p>
+    <!-- Rébus 2 -->
+    <h2>Rébus 2</h2>
+    <img src="gorge.png" alt="Rébus 2" />
+    <input type="text" id="rebus2" placeholder="Réponse au rébus 2" />
 
-    <br><br>
+    <!-- Texte à trous -->
+    <h2>Texte à trous</h2>
+    <p>Complète le texte avec les bonnes réponses :</p>
 
-    <img src="goutte.jpg" alt="Rébus 2 - Goutte d'eau" class="rebus-image" />
-    <br>
-    <input type="text" id="rebus2" placeholder="Réponse du rébus 2" />
-    <p class="instruction">Expression en anglais, en MAJUSCULES.</p>
+    <p>Le <select id="q1"><option value="">--Choix--</option><option value="avant">avant</option><option value="après">après</option><option value="pendant">pendant</option></select> le début de l'exercice.</p>
 
-    <hr>
+    <p>Les charges sont des dépenses <select id="q2"><option value="">--Choix--</option><option value="d'exploitation">d'exploitation</option><option value="financières">financières</option><option value="exceptionnelles">exceptionnelles</option></select> pour faire fonctionner l'association.</p>
 
-    <h2>Partie 2 : Le texte à trous</h2>
-    <p>Complète correctement le texte suivant :</p>
-    <p>
-      Lorsqu’un compte est 
-      <select id="q1">
-        <option value="">--Choisis une réponse--</option>
-        <option value="crédité">crédité</option>
-        <option value="débité">débité</option>
-        <option value="clos">clos</option>
-      </select>, il est augmenté si c’est un compte de passif.
-    </p>
-    <p>
-      Le compte 
-      <select id="q2">
-        <option value="">--Choisis une réponse--</option>
-        <option value="512">512</option>
-        <option value="606">606</option>
-        <option value="44566">44566</option>
-      </select> correspond à la banque.
-    </p>
+    <p>Les produits correspondent aux <select id="q3"><option value="">--Choix--</option><option value="ressources">ressources</option><option value="dépenses">dépenses</option><option value="dettes">dettes</option></select> de l'association.</p>
 
-    <button class="button" onclick="verifierReponses()">Valider mes réponses</button>
+    <p>La TVA normale est actuellement de <select id="q4"><option value="">--Choix--</option><option value="20%">20%</option><option value="5,5%">5,5%</option><option value="10%">10%</option></select> en France.</p>
 
-    <p class="success-message" id="successMessage" style="display: none;">Bravo ! Tu peux passer à l'énigme suivante.</p>
-    <p class="error-message" id="errorMessage" style="display: none;">Il reste des erreurs. Réessaie !</p>
+    <p>La tenue de la comptabilité est <select id="q5"><option value="">--Choix--</option><option value="obligatoire">obligatoire</option><option value="facultative">facultative</option><option value="interdite">interdite</option></select> pour une association qui reçoit des subventions publiques.</p>
 
-    <a href="enigme4.html" class="button" id="nextLink" style="display: none;">Passer à l'Énigme 4</a>
+    <p>Un bilan comptable est constitué de l'actif et du <select id="q6"><option value="">--Choix--</option><option value="passif">passif</option><option value="produit">produit</option><option value="résultat">résultat</option></select>.</p>
+
+    <p>La différence entre les produits et les charges constitue le <select id="q7"><option value="">--Choix--</option><option value="résultat">résultat</option><option value="passif">passif</option><option value="budget">budget</option></select>.</p>
+
+    <p>Une subvention est considérée comme un <select id="q8"><option value="">--Choix--</option><option value="produit">produit</option><option value="charge">charge</option><option value="passif">passif</option></select> dans les comptes.</p>
+
+    <p>Un compte bancaire est un compte d’<select id="q9"><option value="">--Choix--</option><option value="actif">actif</option><option value="passif">passif</option><option value="produit">produit</option></select>.</p>
+
+    <p>Un fournisseur est un tiers à qui l’on doit de l’argent, c’est donc un compte de <select id="q10"><option value="">--Choix--</option><option value="passif">passif</option><option value="actif">actif</option><option value="charge">charge</option></select>.</p>
+
+    <button onclick="verifierEnigme()">Vérifier mes réponses</button>
+
+    <p class="success-message" id="successMessage" style="display: none;">Bravo ! Tu peux accéder à l'énigme suivante.</p>
+    <p class="error-message" id="errorMessage" style="display: none;">Il y a des erreurs, vérifie tes réponses !</p>
+
+    <a id="nextLink" href="enigme4.html" class="button" style="display: none;">Passer à l'Énigme 4</a>
+
   </div>
 
   <script>
-    function verifierReponses() {
-      const reponseRebus1 = document.getElementById('rebus1').value.trim().toUpperCase();
-      const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
-      const reponseQ1 = document.getElementById('q1').value;
-      const reponseQ2 = document.getElementById('q2').value;
+    function verifierEnigme() {
+      // Vérification des rébus
+      const reponseRebus1 = document.getElementById('rebus1').value.trim();
+      const reponseRebus2 = document.getElementById('rebus2').value.trim();
 
-      if (
-        reponseRebus1 === 'CAT GOT YOUR TONGUE' &&
-        reponseRebus2 === 'THE LAST STRAW' &&
-        reponseQ1 === 'crédité' &&
-        reponseQ2 === '512'
-      ) {
+      const correctRebus1 = "THE STRAW THAT BROKE THE CAMEL'S BACK";
+      const correctRebus2 = "TO HAVE A FROG IN ONE'S THROAT";
+
+      const rebusOk = reponseRebus1 === correctRebus1 && reponseRebus2 === correctRebus2;
+
+      // Vérification du texte à trous
+      const bonnesReponses = {
+        q1: 'avant',
+        q2: "d'exploitation",
+        q3: 'ressources',
+        q4: '20%',
+        q5: 'obligatoire',
+        q6: 'passif',
+        q7: 'résultat',
+        q8: 'produit',
+        q9: 'actif',
+        q10: 'passif'
+      };
+
+      let texteOk = true;
+      for (let question in bonnesReponses) {
+        const reponse = document.getElementById(question).value;
+        if (reponse !== bonnesReponses[question]) {
+          texteOk = false;
+          break;
+        }
+      }
+
+      if (rebusOk && texteOk) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('nextLink').style.display = 'inline-block';
-
         localStorage.setItem('enigme3_reussie', 'true');
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
         document.getElementById('nextLink').style.display = 'none';
       }
+    }
+
+    // Protection si l'énigme précédente n'a pas été résolue
+    if (!localStorage.getItem('enigme2_reussie')) {
+      window.location.href = 'index.html';
     }
   </script>
 
