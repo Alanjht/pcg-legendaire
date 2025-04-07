@@ -1,194 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Énigme 3 - La Légende du PCG Maudit</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Énigme 3 - La Légende du PCG Maudit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 800px;
-            text-align: center;
-        }
+    h1 {
+      color: #5a2a83;
+    }
 
-        h1 {
-            color: #4CAF50;
-            margin-bottom: 20px;
-        }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
-        .rebus-image {
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 20px;
-        }
+    .rebus-image {
+      max-width: 300px;
+      height: auto;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
 
-        .input-group {
-            margin-bottom: 20px;
-        }
+    input[type="text"], select {
+      padding: 8px;
+      margin: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 60%;
+    }
 
-        input[type="text"] {
-            padding: 10px;
-            width: 70%;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+    .button {
+      background-color: #5a2a83;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
+    .button:hover {
+      background-color: #7a3db8;
+    }
 
-        button:hover {
-            background-color: #45a049;
-        }
+    .success-message {
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
 
-        .feedback {
-            margin-top: 15px;
-            font-size: 16px;
-            display: none;
-        }
-
-        .success {
-            color: green;
-        }
-
-        .error {
-            color: red;
-        }
-
-        .part-two {
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        select {
-            margin: 0 5px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .next-link {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .next-link a {
-            background-color: #2196F3;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 18px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .next-link a:hover {
-            background-color: #1976D2;
-        }
-    </style>
+    .error-message {
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Énigme 3 - Les Rébus Mystérieux</h1>
+  <div class="container">
+    <h1>Énigme 3 - La Légende du PCG Maudit</h1>
 
-        <!-- Vérification énigme 2 -->
-        <script>
-            if (!localStorage.getItem('enigme2_reussie')) {
-                window.location.href = 'index.html'; // Redirection si énigme 2 non résolue
-            }
-        </script>
-
-        <!-- Image du rébus -->
-        <img src="images/rebus-enigme3.jpg" alt="Rébus mystère" class="rebus-image" />
-
-        <!-- Réponse au rébus -->
-        <div class="input-group">
-            <input type="text" id="rebusAnswer" placeholder="Votre réponse au rébus" />
-        </div>
-
-        <!-- Partie 2 : Texte à trous -->
-        <div class="part-two">
-            <h2>Deuxième épreuve - Texte à trous</h2>
-            <p id="texteATrous">
-                Dans la salle du trésor, les indices sont <select id="select1">
-                    <option value="">-- Choisir --</option>
-                    <option value="faux">faux</option>
-                    <option value="dispersés">dispersés</option>
-                    <option value="évidents">évidents</option>
-                </select> et il faut les <select id="select2">
-                    <option value="">-- Choisir --</option>
-                    <option value="ignorer">ignorer</option>
-                    <option value="assembler">assembler</option>
-                    <option value="effacer">effacer</option>
-                </select> pour découvrir la vérité.
-            </p>
-
-            <button onclick="validerEnigme()">Valider l'énigme</button>
-
-            <p class="feedback error" id="feedbackError">Certaines réponses sont incorrectes. Vérifie bien !</p>
-            <p class="feedback success" id="feedbackSuccess">Bravo ! Énigme résolue avec succès.</p>
-
-            <div class="next-link" id="nextLink">
-                <a href="enigme4.html">Passer à l'Énigme 4</a>
-            </div>
-        </div>
-    </div>
-
+    <!-- Vérification si l'utilisateur a réussi l'énigme 2 -->
     <script>
-        function normalize(str) {
-            return str.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        }
-
-        function validerEnigme() {
-            const rebusAnswer = normalize(document.getElementById('rebusAnswer').value);
-            const select1 = document.getElementById('select1').value;
-            const select2 = document.getElementById('select2').value;
-
-            const rebusCorrectAnswers = [
-                "avoir un chat dans la gorge et la goutte d eau qui fait deborder le vase",
-                "avoir un chat dans la gorge et la goutte d eau qui fait déborder le vase"
-            ];
-
-            const texteCorrectAnswers = ["dispersés", "assembler"];
-
-            const isRebusCorrect = rebusCorrectAnswers.includes(rebusAnswer);
-            const isTexteCorrect = (select1 === texteCorrectAnswers[0] && select2 === texteCorrectAnswers[1]);
-
-            if (isRebusCorrect && isTexteCorrect) {
-                document.getElementById('feedbackSuccess').style.display = 'block';
-                document.getElementById('feedbackError').style.display = 'none';
-                localStorage.setItem('enigme3_reussie', 'true');
-                document.getElementById('nextLink').style.display = 'block';
-            } else {
-                document.getElementById('feedbackError').style.display = 'block';
-                document.getElementById('feedbackSuccess').style.display = 'none';
-            }
-        }
+      if (!localStorage.getItem('enigme2_reussie')) {
+          window.location.href = 'index.html'; // Redirige si l'énigme 2 n'a pas été validée
+      }
     </script>
+
+    <h2>Partie 1 : Les rébus</h2>
+    <p>Résous ces deux rébus pour découvrir les expressions cachées :</p>
+
+    <img src="gorge.png" alt="Rébus 1 - Chat dans la gorge" class="rebus-image" />
+    <br>
+    <input type="text" id="rebus1" placeholder="Réponse du rébus 1" />
+
+    <br><br>
+
+    <img src="goutte.jpg" alt="Rébus 2 - Goutte d'eau" class="rebus-image" />
+    <br>
+    <input type="text" id="rebus2" placeholder="Réponse du rébus 2" />
+
+    <hr>
+
+    <h2>Partie 2 : Le texte à trous</h2>
+    <p>Complète correctement le texte suivant :</p>
+    <p>
+      Lorsqu’un compte est <select id="q1">
+        <option value="">--Choisis une réponse--</option>
+        <option value="crédité">crédité</option>
+        <option value="débité">débité</option>
+        <option value="clos">clos</option>
+      </select>, il est augmenté si c’est un compte de passif.
+    </p>
+    <p>
+      Le compte <select id="q2">
+        <option value="">--Choisis une réponse--</option>
+        <option value="512">512</option>
+        <option value="606">606</option>
+        <option value="44566">44566</option>
+      </select> correspond à la banque.
+    </p>
+
+    <button class="button" onclick="verifierReponses()">Valider mes réponses</button>
+
+    <p class="success-message" id="successMessage" style="display: none;">Bravo ! Tu peux passer à l'énigme suivante.</p>
+    <p class="error-message" id="errorMessage" style="display: none;">Il reste des erreurs. Réessaie !</p>
+
+    <a href="enigme4.html" class="button" id="nextLink" style="display: none;">Passer à l'Énigme 4</a>
+  </div>
+
+  <script>
+    function verifierReponses() {
+      const reponseRebus1 = document.getElementById('rebus1').value.trim().toLowerCase();
+      const reponseRebus2 = document.getElementById('rebus2').value.trim().toLowerCase();
+      const reponseQ1 = document.getElementById('q1').value;
+      const reponseQ2 = document.getElementById('q2').value;
+
+      if (
+        (reponseRebus1.includes('chat') && reponseRebus1.includes('gorge')) &&
+        (reponseRebus2.includes('goutte') && reponseRebus2.includes('vase')) &&
+        reponseQ1 === 'crédité' &&
+        reponseQ2 === '512'
+      ) {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('nextLink').style.display = 'inline-block';
+
+        // Stocke la réussite de l'énigme 3
+        localStorage.setItem('enigme3_reussie', 'true');
+
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('nextLink').style.display = 'none';
+      }
+    }
+  </script>
 
 </body>
 </html>
