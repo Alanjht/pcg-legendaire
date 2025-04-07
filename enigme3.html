@@ -5,19 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Énigme 3 - PCG</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Crimson+Pro&display=swap');
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Crimson Pro', serif;
+      background-color: #fdf6e3;
+      color: #5b4636;
       margin: 40px;
-      background-color: #1c1c1c;
-      color: #f1c40f;
+      background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+      background-repeat: repeat;
     }
 
     h1, h2 {
-      color: #f39c12;
+      font-family: 'Cinzel', serif;
+      color: #8b5e3c;
+      text-shadow: 1px 1px 0px #f0e6d2;
     }
 
     p {
-      line-height: 1.6;
+      line-height: 1.8;
+      font-size: 1.1em;
     }
 
     input[type="text"] {
@@ -25,43 +32,50 @@
       margin: 8px 0 20px 0;
       width: 100%;
       box-sizing: border-box;
-      border: 2px solid #f1c40f;
+      border: 2px solid #c2a471;
       border-radius: 5px;
-      background-color: #333;
-      color: #fff;
+      background-color: #f9f2e4;
+      color: #5b4636;
+      font-size: 1em;
     }
 
     input[type="text"]::placeholder {
-      color: #bbb;
+      color: #9c8a7b;
     }
 
     button {
       padding: 12px 25px;
-      background-color: #f39c12;
-      color: #1c1c1c;
+      background-color: #8b5e3c;
+      color: #fff4e6;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
       transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #e67e22;
+      background-color: #a47148;
     }
 
     #successMessage {
-      color: #2ecc71;
+      color: #27ae60;
       font-weight: bold;
       display: none;
       margin-top: 20px;
+      font-size: 1.2em;
     }
 
     #errorMessage {
-      color: #e74c3c;
+      color: #c0392b;
       font-weight: bold;
       display: none;
       margin-top: 20px;
+      font-size: 1.2em;
     }
 
     #nextLink {
@@ -72,19 +86,29 @@
       padding: 10px 15px;
       text-decoration: none;
       border-radius: 5px;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
     }
 
     #nextLink:hover {
-      background-color: #219150;
+      background-color: #1e8449;
     }
 
     img {
       max-width: 100%;
       height: auto;
       margin: 20px 0;
-      border: 2px solid #f1c40f;
+      border: 4px solid #c2a471;
       border-radius: 8px;
+      box-shadow: 3px 3px 7px rgba(0,0,0,0.4);
     }
+
+    hr {
+      border: none;
+      border-top: 2px dashed #c2a471;
+      margin: 30px 0;
+    }
+
   </style>
 </head>
 <body>
@@ -96,6 +120,8 @@
     Tu devras donc à nouveau résoudre une énigme qui mettra tes compétences d'analyse, d'anglais et,
     comme toujours, de comptabilité à rude épreuve.
   </p>
+
+  <hr/>
 
   <h2>Partie 1 : Trouve le mot de passe</h2>
   <p>Le rébus se trouve en salle BECOD :</p>
@@ -123,18 +149,15 @@
 
   <script>
     function verifierEnigme() {
-      // Vérification de la salle BECOD
       const salleBecod = document.getElementById('salleBecod').value.trim().toUpperCase();
       const salleBecodOk = salleBecod === "BITCOIN";
 
-      // Vérification du rébus (en prenant en compte l'apostrophe)
       const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
       const correctRebus2 = "TO HAVE A FROG IN ONE'S THROAT";
       const reponseRebus2SansApostrophe = reponseRebus2.replace(/'/g, "");
       const correctRebus2SansApostrophe = correctRebus2.replace(/'/g, "");
       const rebusOk = reponseRebus2SansApostrophe === correctRebus2SansApostrophe;
 
-      // Vérification du texte à trous
       const bonnesReponses = {
         q2: 'référence',
         q3: 'valeur',
@@ -168,7 +191,6 @@
       }
     }
 
-    // Protection si l'énigme précédente n'a pas été résolue
     if (!localStorage.getItem('enigme2_reussie')) {
       window.location.href = 'index.html';
     }
