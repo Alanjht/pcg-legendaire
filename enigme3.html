@@ -73,17 +73,17 @@
   <div class="container">
     <h1>Énigme 3 - La Légende du PCG Maudit</h1>
 
-    <p>Résous ces deux épreuves pour accéder à l'étape suivante ! <br><strong>⚠️ Indique tes réponses aux rébus en MAJUSCULES ⚠️</strong></p>
+    <p>Résous ces deux épreuves pour accéder à l'étape suivante !<br><strong>⚠️ Indique ta réponse au rébus en ANGLAIS ⚠️</strong></p>
 
-    <!-- Rébus 1 -->
-    <h2>Rébus 1</h2>
-    <img src="goutte.jpg" alt="Rébus 1" />
-    <input type="text" id="rebus1" placeholder="Réponse au rébus 1" />
+    <!-- Partie 1 : Question ajoutée -->
+    <h2>Première partie</h2>
+    <p>Le rébus se trouve en salle BECOD :</p>
+    <input type="text" id="salleBecod" placeholder="Votre réponse" />
 
-    <!-- Rébus 2 -->
-    <h2>Rébus 2</h2>
-    <img src="gorge.png" alt="Rébus 2" />
-    <input type="text" id="rebus2" placeholder="Réponse au rébus 2" />
+    <!-- Partie 2 : Rébus -->
+    <h2>Rébus</h2>
+    <img src="gorge.png" alt="Rébus" />
+    <input type="text" id="rebus2" placeholder="Réponse au rébus (en anglais)" />
 
     <!-- Texte à trous -->
     <h2>Texte à trous</h2>
@@ -118,20 +118,20 @@
 
   <script>
     function verifierEnigme() {
-      // Vérification des rébus
-      const reponseRebus1 = document.getElementById('rebus1').value.trim();
-      const reponseRebus2 = document.getElementById('rebus2').value.trim();
+      // Vérification de la salle BECOD
+      const salleBecod = document.getElementById('salleBecod').value.trim().toUpperCase();
+      const salleBecodOk = salleBecod === "BITCOIN";
 
-      const correctRebus1 = "THE STRAW THAT BROKE THE CAMEL'S BACK";
+      // Vérification du rébus
+      const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
       const correctRebus2 = "TO HAVE A FROG IN ONE'S THROAT";
-
-      const rebusOk = reponseRebus1 === correctRebus1 && reponseRebus2 === correctRebus2;
+      const rebusOk = reponseRebus2 === correctRebus2;
 
       // Vérification du texte à trous
       const bonnesReponses = {
         q2: 'référence',
         q3: 'valeur',
-        q4: 'd'exploitation',
+        q4: "d'exploitation",
         q5: 'ressources',
         q6: '20%',
         q7: 'obligatoire',
@@ -149,7 +149,7 @@
         }
       }
 
-      if (rebusOk && texteOk) {
+      if (salleBecodOk && rebusOk && texteOk) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('nextLink').style.display = 'inline-block';
