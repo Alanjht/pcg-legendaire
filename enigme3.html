@@ -6,48 +6,59 @@
   <title>Énigme 3 - PCG</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background-color: #1a1a1d;
+      color: #c5c6c7;
+      font-family: 'Trebuchet MS', sans-serif;
       margin: 40px;
-      background-color: #f4f4f9;
-      color: #333;
     }
     h1, h2 {
-      color: #2c3e50;
+      color: #66fcf1;
     }
-    input[type="text"] {
+    p {
+      line-height: 1.6;
+    }
+    input[type="text"], select {
       padding: 8px;
       margin: 5px 0 15px 0;
       width: 100%;
       box-sizing: border-box;
+      border: 1px solid #45a29e;
+      background-color: #0b0c10;
+      color: #66fcf1;
     }
     button {
       padding: 10px 20px;
-      background-color: #27ae60;
+      background-color: #45a29e;
       color: white;
       border: none;
       cursor: pointer;
+      margin-top: 10px;
     }
     button:hover {
-      background-color: #219150;
+      background-color: #66fcf1;
+      color: #1f2833;
     }
     #successMessage {
-      color: green;
+      color: #66fcf1;
       font-weight: bold;
       display: none;
+      margin-top: 15px;
     }
     #errorMessage {
-      color: red;
+      color: #ff4c4c;
       font-weight: bold;
       display: none;
+      margin-top: 15px;
     }
     #nextLink {
       display: none;
       margin-top: 20px;
-      display: inline-block;
-      background-color: #2980b9;
+      background-color: #45a29e;
       color: white;
       padding: 10px 15px;
       text-decoration: none;
+      border-radius: 4px;
+      display: inline-block;
     }
   </style>
 </head>
@@ -62,21 +73,81 @@
   </p>
 
   <h2>Partie 1 : Trouve le mot de passe</h2>
-  <p>Le rébus se trouve en salle BECOD :</p>
+  <p>La solution dans la salle du déjeuner. Attention à ce qui saute aux yeux !</p>
   <input type="text" id="salleBecod" placeholder="Votre réponse ici" />
 
   <h2>Partie 2 : Rébus</h2>
   <p>Résous le rébus ci-dessous (réponse attendue en anglais) :</p>
-  <img src="rebus2.jpg" alt="Rébus 2" style="max-width: 100%; height: auto;" />
+  <img src="gorge.png" alt="Rébus 2" style="max-width: 100%; height: auto;" />
   <input type="text" id="rebus2" placeholder="Votre réponse ici" />
 
   <h2>Partie 3 : Texte à trous</h2>
   <p>Complétez le texte avec les mots manquants :</p>
+  <p><em>(Phrase à trous)</em></p>
   <p>
-    Le PCG constitue une <input type="text" id="q2" placeholder="Réponse" /> commune qui détermine la <input type="text" id="q3" placeholder="Réponse" /> des biens,
-    définit les charges <input type="text" id="q4" placeholder="Réponse" />, et impose la présentation des <input type="text" id="q5" placeholder="Réponse" /> de l'entreprise.
-    Le PCG est mis à jour d’environ <input type="text" id="q6" placeholder="Réponse" /> par an, et son application est <input type="text" id="q7" placeholder="Réponse" />.
-    Le bilan se compose de l'actif et du <input type="text" id="q8" placeholder="Réponse" />. Le compte de <input type="text" id="q9" placeholder="Réponse" /> présente l'ensemble des charges et des <input type="text" id="q10" placeholder="Réponse" />.
+    Le PCG constitue une
+    <select id="q2">
+      <option value="">Choisissez...</option>
+      <option value="référence">référence</option>
+      <option value="méthode">méthode</option>
+      <option value="ressource">ressource</option>
+    </select>
+    commune qui détermine la
+    <select id="q3">
+      <option value="">Choisissez...</option>
+      <option value="valeur">valeur</option>
+      <option value="couleur">couleur</option>
+      <option value="quantité">quantité</option>
+    </select>
+    des biens, définit les charges
+    <select id="q4">
+      <option value="">Choisissez...</option>
+      <option value="d'exploitation">d'exploitation</option>
+      <option value="financières">financières</option>
+      <option value="variables">variables</option>
+    </select>,
+    et impose la présentation des
+    <select id="q5">
+      <option value="">Choisissez...</option>
+      <option value="ressources">ressources</option>
+      <option value="factures">factures</option>
+      <option value="données">données</option>
+    </select>
+    de l'entreprise. Le PCG est mis à jour d’environ
+    <select id="q6">
+      <option value="">Choisissez...</option>
+      <option value="20%">20%</option>
+      <option value="5%">5%</option>
+      <option value="50%">50%</option>
+    </select>
+    par an, et son application est
+    <select id="q7">
+      <option value="">Choisissez...</option>
+      <option value="obligatoire">obligatoire</option>
+      <option value="facultative">facultative</option>
+      <option value="interdite">interdite</option>
+    </select>.
+    Le bilan se compose de l'actif et du
+    <select id="q8">
+      <option value="">Choisissez...</option>
+      <option value="passif">passif</option>
+      <option value="flux">flux</option>
+      <option value="résultat">résultat</option>
+    </select>.
+    Le compte de
+    <select id="q9">
+      <option value="">Choisissez...</option>
+      <option value="résultat">résultat</option>
+      <option value="passif">passif</option>
+      <option value="bilan">bilan</option>
+    </select>
+    présente l'ensemble des charges et des
+    <select id="q10">
+      <option value="">Choisissez...</option>
+      <option value="produit">produit</option>
+      <option value="flux">flux</option>
+      <option value="ressources">ressources</option>
+    </select>.
   </p>
 
   <button onclick="verifierEnigme()">Vérifier mes réponses</button>
@@ -87,18 +158,18 @@
 
   <script>
     function verifierEnigme() {
-      // Vérification de la salle BECOD
+      // Vérification Partie 1
       const salleBecod = document.getElementById('salleBecod').value.trim().toUpperCase();
       const salleBecodOk = salleBecod === "BITCOIN";
 
-      // Vérification du rébus (en prenant en compte l'apostrophe)
+      // Vérification Partie 2
       const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
       const correctRebus2 = "TO HAVE A FROG IN ONE'S THROAT";
       const reponseRebus2SansApostrophe = reponseRebus2.replace(/'/g, "");
       const correctRebus2SansApostrophe = correctRebus2.replace(/'/g, "");
       const rebusOk = reponseRebus2SansApostrophe === correctRebus2SansApostrophe;
 
-      // Vérification du texte à trous
+      // Vérification Partie 3
       const bonnesReponses = {
         q2: 'référence',
         q3: 'valeur',
@@ -113,7 +184,7 @@
 
       let texteOk = true;
       for (let question in bonnesReponses) {
-        const reponse = document.getElementById(question).value.trim().toLowerCase();
+        const reponse = document.getElementById(question).value;
         if (reponse !== bonnesReponses[question]) {
           texteOk = false;
           break;
