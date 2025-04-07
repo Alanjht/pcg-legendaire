@@ -1,202 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Nouvelle Énigme - PCG</title>
-    <style>
-        body {
-            background-color: #f4f4f9;
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            color: #333;
-        }
-
-        h1, h2 {
-            color: #4a148c;
-        }
-
-        .section {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-
-        input[type="text"], select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: #4a148c;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #6a1b9a;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 15px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Énigme 3 - PCG</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    input[type="text"] {
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+    #successMessage {
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+    #errorMessage {
+      color: red;
+      font-weight: bold;
+      display: none;
+    }
+    #nextLink {
+      display: none;
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #2980b9;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+  <h1>Énigme 3 - PCG</h1>
 
-    <h1>Nouvelle Énigme - PCG</h1>
-    <p>Félicitations, tu as une nouvelle fois démontré que tu avais les épaules pour prétendre au PCG, mais le chemin est encore long avant de pouvoir espérer mettre la main sur cet outil légendaire ! Tu devras donc à nouveau résoudre une énigme qui mettra tes compétences d'analyse, d'anglais et comme toujours de comptabilité à rude épreuve.</p>
+  <p>
+    Félicitations, tu as une nouvelle fois démontré que tu avais les épaules pour prétendre au PCG,
+    mais le chemin est encore long avant de pouvoir espérer mettre la main sur cet outil légendaire !
+    Tu devras donc à nouveau résoudre une énigme qui mettra tes compétences d'analyse, d'anglais et,
+    comme toujours, de comptabilité à rude épreuve.
+  </p>
 
-    <div class="section">
-        <h2>Partie 1 : Question de culture générale</h2>
-        <label for="question1">Quelle est la monnaie virtuelle la plus connue ?</label>
-        <input type="text" id="question1">
+  <h2>Partie 1 : Trouve le mot de passe</h2>
+  <p>Le rébus se trouve en salle BECOD :</p>
+  <input type="text" id="salleBecod" placeholder="Votre réponse ici" />
 
-        <label for="question2">Le rebus se trouve en salle BECOD</label>
-        <input type="text" id="question2">
-    </div>
+  <h2>Partie 2 : Rébus</h2>
+  <p>Résous le rébus ci-dessous (réponse attendue en anglais) :</p>
+  <img src="rebus2.jpg" alt="Rébus 2" style="max-width: 100%; height: auto;" />
+  <input type="text" id="rebus2" placeholder="Votre réponse ici" />
 
-    <div class="section">
-        <h2>Partie 2 : Résous ce rébus</h2>
-        <img src="gorge.png" alt="Rébus">
+  <h2>Partie 3 : Texte à trous</h2>
+  <p>Complétez le texte avec les mots manquants :</p>
+  <p>
+    Le PCG constitue une <input type="text" id="q2" placeholder="Réponse" /> commune qui détermine la <input type="text" id="q3" placeholder="Réponse" /> des biens,
+    définit les charges <input type="text" id="q4" placeholder="Réponse" />, et impose la présentation des <input type="text" id="q5" placeholder="Réponse" /> de l'entreprise.
+    Le PCG est mis à jour d’environ <input type="text" id="q6" placeholder="Réponse" /> par an, et son application est <input type="text" id="q7" placeholder="Réponse" />.
+    Le bilan se compose de l'actif et du <input type="text" id="q8" placeholder="Réponse" />. Le compte de <input type="text" id="q9" placeholder="Réponse" /> présente l'ensemble des charges et des <input type="text" id="q10" placeholder="Réponse" />.
+  </p>
 
-        <label for="rebus2">Quel mot est représenté par ce rébus ? (Réponse en anglais)</label>
-        <input type="text" id="rebus2">
-    </div>
+  <button onclick="verifierEnigme()">Vérifier mes réponses</button>
 
-    <div class="section">
-        <h2>Partie 3 : Texte à trous sur la sécurité incendie</h2>
-        <p>Complète le texte suivant :</p>
+  <p id="successMessage">Bravo ! Toutes les réponses sont correctes.</p>
+  <p id="errorMessage">Dommage, certaines réponses sont incorrectes ou incomplètes. Réessaie !</p>
+  <a id="nextLink" href="enigme4.html">Passer à l'énigme suivante</a>
 
-        <p>
-            La sécurité incendie est un élément essentiel dans tout établissement recevant du 
-            <select id="blank1">
-                <option value="">--Choisir une réponse--</option>
-                <option value="public">public</option>
-                <option value="privé">privé</option>
-                <option value="personnel">personnel</option>
-            </select>.
-            Le but est de garantir la sécurité des 
-            <select id="blank2">
-                <option value="">--Choisir une réponse--</option>
-                <option value="personnes">personnes</option>
-                <option value="bâtiments">bâtiments</option>
-                <option value="meubles">meubles</option>
-            </select> 
-            et la protection des biens.
-            Les consignes de sécurité doivent être 
-            <select id="blank3">
-                <option value="">--Choisir une réponse--</option>
-                <option value="accessibles">accessibles</option>
-                <option value="contraignantes">contraignantes</option>
-                <option value="cachées">cachées</option>
-            </select>.
-            En cas d'incendie, il est important de 
-            <select id="blank4">
-                <option value="">--Choisir une réponse--</option>
-                <option value="donner l'alerte">donner l'alerte</option>
-                <option value="donner les consignes">donner les consignes</option>
-                <option value="donner les clés">donner les clés</option>
-            </select> rapidement.
-            Les établissements doivent être équipés de dispositifs de sécurité, tels que les 
-            <select id="blank5">
-                <option value="">--Choisir une réponse--</option>
-                <option value="extincteurs">extincteurs</option>
-                <option value="climatiseurs">climatiseurs</option>
-                <option value="photocopieurs">photocopieurs</option>
-            </select>.
-            Les issues de secours doivent être 
-            <select id="blank6">
-                <option value="">--Choisir une réponse--</option>
-                <option value="signalées">signalées</option>
-                <option value="fermées">fermées</option>
-                <option value="décorées">décorées</option>
-            </select>.
-            Le personnel doit être formé à la manipulation des 
-            <select id="blank7">
-                <option value="">--Choisir une réponse--</option>
-                <option value="extincteurs">extincteurs</option>
-                <option value="ordinateurs">ordinateurs</option>
-                <option value="téléphones">téléphones</option>
-            </select>.
-            Des exercices d'évacuation 
-            <select id="blank8">
-                <option value="">--Choisir une réponse--</option>
-                <option value="réguliers">réguliers</option>
-                <option value="mensuels">mensuels</option>
-                <option value="exceptionnels">exceptionnels</option>
-            </select> permettent de se préparer efficacement.
-            Enfin, le respect des normes garantit une meilleure 
-            <select id="blank9">
-                <option value="">--Choisir une réponse--</option>
-                <option value="prévention">prévention</option>
-                <option value="augmentation">augmentation</option>
-                <option value="multiplication">multiplication</option>
-            </select> des risques d'incendie.
-        </p>
-    </div>
+  <script>
+    function verifierEnigme() {
+      // Vérification de la salle BECOD
+      const salleBecod = document.getElementById('salleBecod').value.trim().toUpperCase();
+      const salleBecodOk = salleBecod === "BITCOIN";
 
-    <button onclick="verifierReponses()">Vérifier mes réponses</button>
+      // Vérification du rébus (en prenant en compte l'apostrophe)
+      const reponseRebus2 = document.getElementById('rebus2').value.trim().toUpperCase();
+      const correctRebus2 = "TO HAVE A FROG IN ONE'S THROAT";
+      const reponseRebus2SansApostrophe = reponseRebus2.replace(/'/g, "");
+      const correctRebus2SansApostrophe = correctRebus2.replace(/'/g, "");
+      const rebusOk = reponseRebus2SansApostrophe === correctRebus2SansApostrophe;
 
-    <p id="resultat"></p>
+      // Vérification du texte à trous
+      const bonnesReponses = {
+        q2: 'référence',
+        q3: 'valeur',
+        q4: "d'exploitation",
+        q5: 'ressources',
+        q6: '20%',
+        q7: 'obligatoire',
+        q8: 'passif',
+        q9: 'résultat',
+        q10: 'produit'
+      };
 
-    <script>
-        function verifierReponses() {
-            const question1 = document.getElementById('question1').value.trim().toLowerCase();
-            const question2 = document.getElementById('question2').value.trim().toLowerCase();
-            const rebus2 = document.getElementById('rebus2').value.trim().toLowerCase();
-
-            const blanks = [];
-            for (let i = 1; i <= 9; i++) {
-                blanks.push(document.getElementById('blank' + i).value.toLowerCase());
-            }
-
-            if (question1 !== 'bitcoin') {
-                document.getElementById('resultat').innerText = 'Erreur dans la question 1.';
-                return;
-            }
-
-            if (question2 !== 'bitcoin') {
-                document.getElementById('resultat').innerText = 'Erreur dans la question sur la salle BECOD.';
-                return;
-            }
-
-            if (rebus2 !== 'throat') {
-                document.getElementById('resultat').innerText = 'Erreur dans le rébus 2.';
-                return;
-            }
-
-            const bonnesReponses = ['public', 'personnes', 'accessibles', "donner l'alerte", 'extincteurs', 'signalées', 'extincteurs', 'réguliers', 'prévention'];
-
-            for (let i = 0; i < bonnesReponses.length; i++) {
-                if (blanks[i] !== bonnesReponses[i]) {
-                    document.getElementById('resultat').innerText = 'Erreur dans le texte à trous.';
-                    return;
-                }
-            }
-
-            document.getElementById('resultat').innerText = 'Bravo ! Toutes les réponses sont correctes !';
+      let texteOk = true;
+      for (let question in bonnesReponses) {
+        const reponse = document.getElementById(question).value.trim().toLowerCase();
+        if (reponse !== bonnesReponses[question]) {
+          texteOk = false;
+          break;
         }
-    </script>
+      }
 
+      if (salleBecodOk && rebusOk && texteOk) {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('nextLink').style.display = 'inline-block';
+        localStorage.setItem('enigme3_reussie', 'true');
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('nextLink').style.display = 'none';
+      }
+    }
+
+    // Protection si l'énigme précédente n'a pas été résolue
+    if (!localStorage.getItem('enigme2_reussie')) {
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
