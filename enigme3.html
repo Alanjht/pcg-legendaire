@@ -14,6 +14,9 @@
       margin: 40px;
       background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
       background-repeat: repeat;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 40px auto;
     }
 
     h1, h2 {
@@ -23,20 +26,20 @@
     }
 
     p {
-      line-height: 1.8;
-      font-size: 1.1em;
+      margin-bottom: 20px;
     }
 
-    input[type="text"] {
-      padding: 10px;
-      margin: 8px 0 20px 0;
-      width: 100%;
-      box-sizing: border-box;
+    input[type="text"], select {
+      padding: 8px;
+      margin: 5px 0;
+      width: auto;
+      min-width: 150px;
       border: 2px solid #c2a471;
       border-radius: 5px;
       background-color: #f9f2e4;
       color: #5b4636;
       font-size: 1em;
+      vertical-align: middle;
     }
 
     input[type="text"]::placeholder {
@@ -56,6 +59,7 @@
       letter-spacing: 1px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
       transition: background-color 0.3s ease;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -135,10 +139,70 @@
   <h2>Partie 3 : Texte à trous</h2>
   <p>Complétez le texte avec les mots manquants :</p>
   <p>
-    Le PCG constitue une <input type="text" id="q2" placeholder="Réponse" /> commune qui détermine la <input type="text" id="q3" placeholder="Réponse" /> des biens,
-    définit les charges <input type="text" id="q4" placeholder="Réponse" />, et impose la présentation des <input type="text" id="q5" placeholder="Réponse" /> de l'entreprise.
-    Le PCG est mis à jour d’environ <input type="text" id="q6" placeholder="Réponse" /> par an, et son application est <input type="text" id="q7" placeholder="Réponse" />.
-    Le bilan se compose de l'actif et du <input type="text" id="q8" placeholder="Réponse" />. Le compte de <input type="text" id="q9" placeholder="Réponse" /> présente l'ensemble des charges et des <input type="text" id="q10" placeholder="Réponse" />.
+    Le PCG constitue une 
+    <select id="q2">
+      <option value="">Choisissez</option>
+      <option value="référence">référence</option>
+      <option value="valeur">valeur</option>
+      <option value="ressources">ressources</option>
+    </select>
+    commune qui détermine la 
+    <select id="q3">
+      <option value="">Choisissez</option>
+      <option value="valeur">valeur</option>
+      <option value="référence">référence</option>
+      <option value="passif">passif</option>
+    </select>
+    des biens, définit les charges 
+    <select id="q4">
+      <option value="">Choisissez</option>
+      <option value="d'exploitation">d'exploitation</option>
+      <option value="passif">passif</option>
+      <option value="obligatoire">obligatoire</option>
+    </select>,
+    et impose la présentation des 
+    <select id="q5">
+      <option value="">Choisissez</option>
+      <option value="ressources">ressources</option>
+      <option value="valeur">valeur</option>
+      <option value="passif">passif</option>
+    </select>
+    de l'entreprise.
+    Le PCG est mis à jour d’environ 
+    <select id="q6">
+      <option value="">Choisissez</option>
+      <option value="20%">20%</option>
+      <option value="10%">10%</option>
+      <option value="50%">50%</option>
+    </select>
+    par an, et son application est 
+    <select id="q7">
+      <option value="">Choisissez</option>
+      <option value="obligatoire">obligatoire</option>
+      <option value="facultative">facultative</option>
+      <option value="optionnelle">optionnelle</option>
+    </select>.
+    Le bilan se compose de l'actif et du 
+    <select id="q8">
+      <option value="">Choisissez</option>
+      <option value="passif">passif</option>
+      <option value="actif">actif</option>
+      <option value="capital">capital</option>
+    </select>.
+    Le compte de 
+    <select id="q9">
+      <option value="">Choisissez</option>
+      <option value="résultat">résultat</option>
+      <option value="produit">produit</option>
+      <option value="charge">charge</option>
+    </select>
+    présente l'ensemble des charges et des 
+    <select id="q10">
+      <option value="">Choisissez</option>
+      <option value="produit">produit</option>
+      <option value="actif">actif</option>
+      <option value="passif">passif</option>
+    </select>.
   </p>
 
   <button onclick="verifierEnigme()">Vérifier mes réponses</button>
@@ -172,7 +236,8 @@
 
       let texteOk = true;
       for (let question in bonnesReponses) {
-        const reponse = document.getElementById(question).value.trim().toLowerCase();
+        const element = document.getElementById(question);
+        const reponse = element.value.trim().toLowerCase();
         if (reponse !== bonnesReponses[question]) {
           texteOk = false;
           break;
