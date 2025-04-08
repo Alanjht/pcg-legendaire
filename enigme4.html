@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Énigme 4 - Écriture Comptable</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #2c3e50;
+      color: white;
+    }
+    .dropzone {
+      min-height: 40px;
+      background-color: #ecf0f1;
+      border: 2px dashed #bdc3c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .draggable {
+      padding: 8px 12px;
+      margin: 5px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 4px;
+      cursor: grab;
+      display: inline-block;
+    }
+    #successMessage {
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+    #nextLink {
+      display: none;
+      margin-top: 20px;
+      background-color: #2980b9;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Énigme 4 - Puzzle Comptable</h1>
+  <p>Reconstitue l'écriture comptable pour l'achat d'une immobilisation (ordinateur à 1200 € HT, TVA 20%, payé par banque).</p>
+
+  <table>
+    <tr>
+      <th>N° Compte</th>
+      <th>Libellé</th>
+      <th>Débit (€)</th>
+      <th>Crédit (€)</th>
+    </tr>
+    <tr>
+      <td class="dropzone" data-answer="2183"></td>
+      <td>Ordinateur</td>
+      <td class="dropzone" data-answer="1200"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="dropzone" data-answer="44562"></td>
+      <td>TVA déductible</td>
+      <td class="dropzone" data-answer="240"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="dropzone" data-answer="512"></td>
+      <td>Banque</td>
+      <td></td>
+      <td class="dropzone" data-answer="1440"></td>
+    </tr>
+  </table>
+
+  <h3>Éléments à placer :</h3>
+  <div id="elements">
+    <div class="draggable" draggable="true">2183</div>
+    <div class="draggable" draggable="true">44562</div>
+    <div class="draggable" draggable="true">512</div>
+    <div class="draggable" draggable="true">1200</div>
+    <div class="draggable" draggable="true">240</div>
+    <div class="draggable" draggable="true">1440</div>
+  </div>
+
+  <button onclick="verifier()">Vérifier mes réponses</button>
+  <p id="successMessage">Bravo ! Tu as correctement reconstitué l'écriture comptable.</p>
+  <a id="nextLink" href="enigme5.html">Passer à l'énigme suivante</a>
+
+  <script>
+    const draggables = document.querySelectorAll('.draggable');
+    const dropzones = document.querySelectorAll('.dropzone');
+
+    draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text', draggable.textContent);
+      });
+    });
+
+    dropzones.forEach(zone => {
+      zone.addEventListener('dragover', e => e.preventDefault());
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text');
+        zone.textContent = data;
+      });
+    });
+
+    function verifier() {
+      let correct = true;
+      dropzones.forEach(zone => {
+        if (zone.textContent.trim() !== zone.getAttribute('data-answer')) {
+          correct = false;
+        }
+      });
+
+      if (correct) {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('nextLink').style.display = 'inline-block';
+        localStorage.setItem('enigme4_reussie', 'true');
+      } else {
+        alert('Certaines cases sont incorrectes ou vides, réessaie !');
+      }
+    }
+
+    // Sécurité énigme 3
+    if (!localStorage.getItem('enigme3_reussie')) {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
