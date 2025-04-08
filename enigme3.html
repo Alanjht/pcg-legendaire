@@ -35,6 +35,18 @@
             max-width: 100%;
             height: auto;
         }
+        select {
+            padding: 5px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -62,18 +74,65 @@
             <option value="référence">référence</option>
             <option value="gestion">gestion</option>
             <option value="contrôle">contrôle</option>
-        </select>...
+        </select> des opérations comptables. Son rôle est de fournir un cadre
+        <select id="q2">
+            <option value="">--Choix--</option>
+            <option value="stratégique">stratégique</option>
+            <option value="comptable">comptable</option>
+            <option value="administratif">administratif</option>
+        </select> pour organiser et suivre les mouvements financiers d'une entreprise. Il est essentiel pour garantir la 
+        <select id="q3">
+            <option value="">--Choix--</option>
+            <option value="transparence">transparence</option>
+            <option value="confidentialité">confidentialité</option>
+            <option value="précision">précision</option>
+        </select> des informations financières.
     </p>
-
-    <!-- Le reste de l'énigme à trous -->
 </div>
 
+<div class="enigme-part">
+    <h2>Partie 3 : Question finale</h2>
+    <p><strong>Question :</strong> Quel est le mot caché que tu recherches dans cette énigme ? (Donne ta réponse en MAJUSCULES)</p>
+    <input type="text" id="finalAnswer" placeholder="Réponse">
+</div>
+
+<button id="submitBtn">Soumettre</button>
+
+<!-- Bouton pour continuer, caché par défaut -->
 <button id="nextButton" class="hidden" onclick="window.location.href='final.html'">Passer à l'Énigme Suivante</button>
 
 <script>
+    // Vérifier si l'énigme 2 a été réussie avant d'afficher le contenu
     if (!localStorage.getItem('enigme2_reussie')) {
         window.location.href = 'index.html';  // Si l'énigme 2 n'est pas réussie, rediriger vers la première page
     }
+
+    // Validation de la soumission
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        const questionInput = document.getElementById('questionInput').value.trim();
+        const rebusInput = document.getElementById('rebusInput').value.trim();
+        const q1 = document.getElementById('q1').value;
+        const q2 = document.getElementById('q2').value;
+        const q3 = document.getElementById('q3').value;
+        const finalAnswer = document.getElementById('finalAnswer').value.trim();
+
+        const correctQuestionAnswer = "BREAKFAST";  // Réponse à la question de la salle
+        const correctRebusAnswer = "THROAT";  // Réponse au rébus
+        const correctFinalAnswer = "COMPTABLE";  // Mot caché final
+
+        // Vérification des réponses
+        if (questionInput.toUpperCase() === correctQuestionAnswer &&
+            rebusInput.toUpperCase() === correctRebusAnswer &&
+            q1 === "gestion" && 
+            q2 === "comptable" &&
+            q3 === "transparence" &&
+            finalAnswer.toUpperCase() === correctFinalAnswer) {
+            // Si toutes les réponses sont correctes, afficher le bouton pour continuer
+            document.getElementById('nextButton').classList.remove('hidden');
+        } else {
+            alert("Une ou plusieurs réponses sont incorrectes. Réessaie !");
+        }
+    });
 </script>
 
 </body>
