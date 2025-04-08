@@ -19,7 +19,7 @@
       text-align: center;
     }
     .image-container img {
-      max-width: 15%; /* Réduction de la taille des images */
+      max-width: 80%; /* Réduction de la taille des images */
       height: auto;
       margin-bottom: 10px; /* Réduction de l'espacement entre l'image et l'indice */
     }
@@ -59,21 +59,6 @@
       color: red;
       font-weight: bold;
       display: none;
-    }
-    #nextLink {
-      display: none;
-      padding: 10px 20px;
-      background-color: #2980b9;
-      color: white;
-      border: none;
-      text-decoration: none;
-      cursor: pointer;
-      text-align: center;
-      display: inline-block;
-      margin-top: 20px;
-    }
-    #nextLink:hover {
-      background-color: #1f6a8c;
     }
   </style>
 </head>
@@ -116,9 +101,6 @@
 
     <p id="successMessage">Bravo ! Code correct, vous avez réussi l'énigme.</p>
     <p id="errorMessage">Dommage, ce n'est pas le bon code. Réessayez !</p>
-
-    <!-- Bouton pour passer à l'énigme suivante -->
-    <a id="nextLink" href="enigme5.html">Passer à l'énigme suivante</a>
   </div>
 
   <script>
@@ -134,11 +116,9 @@
       if (codeInput === codeCorrect) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'inline-block'; // Afficher le bouton pour l'énigme suivante
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'none'; // Cacher le bouton si le code est incorrect
       }
     }
   </script>
