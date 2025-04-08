@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Énigme 2 - La Légende du PCG Maudit</title>
     <style>
-        /* Style de la page (identique à ce que nous avons déjà vu) */
+        /* Styles identiques à avant */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f1f1f1;
@@ -120,21 +120,19 @@
     <div class="container">
         <h1>Énigme 2 - La Légende du PCG Maudit</h1>
         
-        <!-- Texte d'introduction -->
         <p class="intro-text">
             Félicitations, tu as surmonté la première épreuve… mais ne te repose pas sur tes lauriers !<br>
             Cette victoire n’avait rien d’exceptionnel, l’épreuve était simple. Maintenant, les choses sérieuses commencent. <br>
             Pour franchir la prochaine étape, tu devras percer un mystère dissimulé dans les réseaux de la meilleure association étudiante. Tes connaissances seront une fois de plus mises à l’épreuve. Prépare-toi… et bonne chance !
         </p>
 
-        <!-- Vérification si l'utilisateur a réussi l'énigme 1 -->
+        <!-- Vérification de l'énigme 1 -->
         <script>
             if (!localStorage.getItem('enigme1_reussie')) {
-                window.location.href = 'index.html'; // Redirige vers la page d'accueil ou l'énigme 1
+                window.location.href = 'index.html';
             }
         </script>
 
-        <!-- Formulaire de l'énigme 2 (le code de l'énigme à résoudre) -->
         <div class="code-container">
             <input type="number" id="code1" maxlength="1" placeholder="Code 1" />
             <input type="number" id="code2" maxlength="1" placeholder="Code 2" />
@@ -144,9 +142,11 @@
 
         <button class="button" id="submitBtn">Valider le Code</button>
         
-        <p class="error-message" id="errorMessage" style="display: none;">Le code est incorrect. Réessaie !</p>
-        <p class="success-message" id="successMessage" style="display: none;">Félicitations, tu es digne de passer à la troisième épreuve !</p>
-        <a id="nextLink" href="enigme3.html" class="button next-link" style="display: none;">Passer à l'Énigme 3</a>
+        <p class="error-message" id="errorMessage">Le code est incorrect. Réessaie !</p>
+        <p class="success-message" id="successMessage">Félicitations, tu es digne de passer à la troisième épreuve !</p>
+        <div class="next-link" id="nextLink">
+            <a href="enigme3.html" onclick="localStorage.setItem('enigme2', 'success')">Passer à l'Énigme 3</a>
+        </div>
 
         <div class="footer">
             <p>&copy; 2025 La Légende du PCG Maudit. Tous droits réservés.</p>
@@ -155,8 +155,7 @@
     </div>
 
     <script>
-        // Code du PCG à deviner
-        const correctCode = ['9', '5', '5', '2']; // Le code secret à entrer dans les champs
+        const correctCode = ['9', '5', '5', '2'];
 
         document.getElementById('submitBtn').addEventListener('click', function() {
             const code1 = document.getElementById('code1').value.trim();
@@ -166,15 +165,12 @@
 
             const userCode = [code1, code2, code3, code4];
             
-            // Vérifier si le code est correct
             if (JSON.stringify(userCode) === JSON.stringify(correctCode)) {
-                // Si le code est correct
-                localStorage.setItem('enigme2_reussie', 'true'); // Enregistrer que l'énigme 2 a été réussie
+                localStorage.setItem('enigme2', 'success'); // ✅ Correction ici
                 document.getElementById('successMessage').style.display = 'block';
                 document.getElementById('nextLink').style.display = 'block';
                 document.getElementById('errorMessage').style.display = 'none';
             } else {
-                // Si le code est incorrect
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
                 document.getElementById('nextLink').style.display = 'none';
