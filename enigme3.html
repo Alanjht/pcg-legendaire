@@ -204,12 +204,12 @@
       if (partie1Ok && partie2Ok) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'inline-block'; // Affichage du lien pour passer à l'énigme suivante
+        document.getElementById('nextLink').style.display = 'inline-block'; // Afficher le lien vers l'énigme suivante
         localStorage.setItem('enigme3_reussie', 'true');
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'none'; // Masquer le lien si les réponses sont incorrectes
+        document.getElementById('nextLink').style.display = 'none'; // Ne pas afficher le lien si les réponses sont incorrectes
       }
     }
   </script>
