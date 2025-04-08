@@ -156,7 +156,7 @@
   <p id="successMessage">Bravo ! Toutes les réponses sont correctes.</p>
   <p id="errorMessage">Dommage, certaines réponses sont incorrectes ou incomplètes. Réessaie !</p>
 
-  <button id="nextEnigmaButton" onclick="location.href='enigme4.html'">Passer à l'énigme suivante</button>
+  <button id="nextEnigmaButton" onclick="verifierEtPasser()">Passer à l'énigme suivante</button>
 
   <script>
     function verifierEnigme() {
@@ -194,21 +194,24 @@
         }
       }
 
-      // Vérification de l'énigme 2 avant d'afficher les résultats
-      if (!localStorage.getItem('enigme2_reussie')) {
-        alert("Tu dois résoudre l'énigme 2 avant de passer à celle-ci.");
-        return;
-      }
-
-      // Affichage des messages
       if (partie1Ok && partie2Ok) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
         document.getElementById('nextEnigmaButton').style.display = 'inline-block'; // On affiche le bouton !
+        localStorage.setItem('enigme3_reussie', 'true'); // On marque l'énigme 3 comme réussie
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
         document.getElementById('nextEnigmaButton').style.display = 'none'; // On cache le bouton si erreurs
+      }
+    }
+
+    function verifierEtPasser() {
+      // On vérifie si l'énigme 3 est réussie avant de passer à l'énigme 4
+      if (localStorage.getItem('enigme3_reussie') === 'true') {
+        location.href = 'enigme4.html'; // On passe à l'énigme 4
+      } else {
+        alert("Tu dois résoudre l'énigme 3 avant de passer à l'énigme 4.");
       }
     }
   </script>
