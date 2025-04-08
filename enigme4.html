@@ -60,6 +60,18 @@
       font-weight: bold;
       display: none;
     }
+    #nextButton {
+      background-color: #2980b9;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: inline-block;
+      display: none;
+      margin-top: 20px;
+    }
+    #nextButton:hover {
+      background-color: #1c67a2;
+    }
   </style>
 </head>
 <body>
@@ -101,6 +113,9 @@
 
     <p id="successMessage">Bravo ! Code correct, vous avez réussi l'énigme.</p>
     <p id="errorMessage">Dommage, ce n'est pas le bon code. Réessayez !</p>
+
+    <!-- Bouton vers l'énigme suivante, affiché après réussite -->
+    <a id="nextButton" href="enigme5.html">Passer à l'énigme suivante</a>
   </div>
 
   <script>
@@ -116,9 +131,11 @@
       if (codeInput === codeCorrect) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'inline-block'; // Afficher le bouton de la prochaine énigme
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('nextButton').style.display = 'none'; // Masquer le bouton si la réponse est incorrecte
       }
     }
   </script>
