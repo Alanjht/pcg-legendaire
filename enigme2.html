@@ -145,7 +145,7 @@
         <p class="error-message" id="errorMessage">Le code est incorrect. Réessaie !</p>
         <p class="success-message" id="successMessage">Félicitations, tu es digne de passer à la troisième épreuve !</p>
         <div class="next-link" id="nextLink">
-            <a href="enigme3.html" onclick="localStorage.setItem('enigme2', 'success')">Passer à l'Énigme 3</a>
+            <a href="enigme3.html" onclick="localStorage.setItem('enigme2_reussie', 'true')">Passer à l'Énigme 3</a>
         </div>
 
         <div class="footer">
@@ -166,7 +166,7 @@
             const userCode = [code1, code2, code3, code4];
             
             if (JSON.stringify(userCode) === JSON.stringify(correctCode)) {
-                localStorage.setItem('enigme2', 'success'); // ✅ Correction ici
+                localStorage.setItem('enigme2_reussie', 'true'); // ✅ Correction ici
                 document.getElementById('successMessage').style.display = 'block';
                 document.getElementById('nextLink').style.display = 'block';
                 document.getElementById('errorMessage').style.display = 'none';
