@@ -1,216 +1,202 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Énigme 3 - PCG</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 40px;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    input[type="text"], select {
-      padding: 8px;
-      margin: 5px 0 15px 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #27ae60;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #219150;
-    }
-    #successMessage {
-      color: green;
-      font-weight: bold;
-      display: none;
-    }
-    #errorMessage {
-      color: red;
-      font-weight: bold;
-      display: none;
-    }
-    #nextLink {
-      display: none;
-      margin-top: 20px;
-      background-color: #2980b9;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      display: inline-block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Énigme 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .hidden {
+            display: none;
+        }
+        .enigme-part {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Énigme 3 - PCG</h1>
+<h1>Énigme 3</h1>
 
-  <p>
-    Félicitations, tu as franchi une nouvelle étape ! Mais le chemin vers le légendaire PCG est encore semé d'embûches.
-    Résous attentivement cette énigme en deux parties.
-  </p>
+<div class="enigme-part">
+    <h2>Partie 1 : Indices</h2>
+    <p><strong>Question :</strong> La réponse se situe dans la salle du petit déjeuner. Attention à ce qui saute aux yeux !</p>
+    <input type="text" id="questionInput" placeholder="Votre réponse en MAJUSCULES et en anglais">
+    <br><br>
+    <p><strong>Rébus :</strong></p>
+    <img src="gorge.png" alt="Rébus">
+    <br>
+    <input type="text" id="rebusInput" placeholder="Réponse en anglais en MAJUSCULES">
+</div>
 
-  <h2>Partie 1 : Question + Rébus</h2>
-  <p><strong>La réponse se situe dans la salle du petit déjeuner. Attention à ce qui saute aux yeux !</strong></p>
-  <input type="text" id="questionPetitDej" placeholder="Votre réponse ici (MAJUSCULES, ANGLAIS)" />
+<div class="enigme-part">
+    <h2>Partie 2 : Texte à trous</h2>
+    <p>Complète le texte avec les bonnes réponses :</p>
 
-  <p>Résous le rébus ci-dessous (réponse attendue en anglais et en majuscules) :</p>
-  <img src="gorge.png" alt="Rébus gorge" style="max-width: 100%; height: auto;" />
-  <input type="text" id="rebus" placeholder="Votre réponse ici (MAJUSCULES, ANGLAIS)" />
+    <p>Le plan comptable est un outil de 
+        <select id="q1">
+            <option value="">--Choix--</option>
+            <option value="référence">référence</option>
+            <option value="gestion">gestion</option>
+            <option value="contrôle">contrôle</option>
+        </select>.
+    </p>
 
-  <h2>Partie 2 : Texte à trous</h2>
-  <p>Complète le texte avec les bonnes réponses :</p>
+    <p>Les amortissements concernent la perte de 
+        <select id="q2">
+            <option value="">--Choix--</option>
+            <option value="valeur">valeur</option>
+            <option value="durée">durée</option>
+            <option value="quantité">quantité</option>
+        </select> des biens.
+    </p>
 
-  <p>Le plan comptable est un outil de 
-    <select id="q2">
-      <option value="">--Choix--</option>
-      <option value="référence">référence</option>
-      <option value="gestion">gestion</option>
-      <option value="contrôle">contrôle</option>
-    </select>.
-  </p>
+    <p>Les charges sont des dépenses 
+        <select id="q3">
+            <option value="">--Choix--</option>
+            <option value="d'exploitation">d'exploitation</option>
+            <option value="financières">financières</option>
+            <option value="exceptionnelles">exceptionnelles</option>
+        </select> pour faire fonctionner l'association.
+    </p>
 
-  <p>Les amortissements concernent la perte de 
-    <select id="q3">
-      <option value="">--Choix--</option>
-      <option value="valeur">valeur</option>
-      <option value="durée">durée</option>
-      <option value="quantité">quantité</option>
-    </select> des biens.
-  </p>
+    <p>Les produits correspondent aux 
+        <select id="q4">
+            <option value="">--Choix--</option>
+            <option value="ressources">ressources</option>
+            <option value="dépenses">dépenses</option>
+            <option value="dettes">dettes</option>
+        </select> de l'association.
+    </p>
 
-  <p>Les charges sont des dépenses 
-    <select id="q4">
-      <option value="">--Choix--</option>
-      <option value="d'exploitation">d'exploitation</option>
-      <option value="financières">financières</option>
-      <option value="exceptionnelles">exceptionnelles</option>
-    </select> pour faire fonctionner l'association.
-  </p>
+    <p>La TVA normale est actuellement de 
+        <select id="q5">
+            <option value="">--Choix--</option>
+            <option value="20%">20%</option>
+            <option value="5,5%">5,5%</option>
+            <option value="10%">10%</option>
+        </select> en France.
+    </p>
 
-  <p>Les produits correspondent aux 
-    <select id="q5">
-      <option value="">--Choix--</option>
-      <option value="ressources">ressources</option>
-      <option value="dépenses">dépenses</option>
-      <option value="dettes">dettes</option>
-    </select> de l'association.
-  </p>
+    <p>La tenue de la comptabilité est 
+        <select id="q6">
+            <option value="">--Choix--</option>
+            <option value="obligatoire">obligatoire</option>
+            <option value="facultative">facultative</option>
+            <option value="interdite">interdite</option>
+        </select> pour une association qui reçoit des subventions publiques.
+    </p>
 
-  <p>La TVA normale est actuellement de 
-    <select id="q6">
-      <option value="">--Choix--</option>
-      <option value="20%">20%</option>
-      <option value="5,5%">5,5%</option>
-      <option value="10%">10%</option>
-    </select> en France.
-  </p>
+    <p>Un bilan comptable est constitué de l'actif et du 
+        <select id="q7">
+            <option value="">--Choix--</option>
+            <option value="passif">passif</option>
+            <option value="produit">produit</option>
+            <option value="résultat">résultat</option>
+        </select>.
+    </p>
 
-  <p>La tenue de la comptabilité est 
-    <select id="q7">
-      <option value="">--Choix--</option>
-      <option value="obligatoire">obligatoire</option>
-      <option value="facultative">facultative</option>
-      <option value="interdite">interdite</option>
-    </select> pour une association qui reçoit des subventions publiques.
-  </p>
+    <p>La différence entre les produits et les charges constitue le 
+        <select id="q8">
+            <option value="">--Choix--</option>
+            <option value="résultat">résultat</option>
+            <option value="passif">passif</option>
+            <option value="budget">budget</option>
+        </select>.
+    </p>
 
-  <p>Un bilan comptable est constitué de l'actif et du 
-    <select id="q8">
-      <option value="">--Choix--</option>
-      <option value="passif">passif</option>
-      <option value="produit">produit</option>
-      <option value="résultat">résultat</option>
-    </select>.
-  </p>
+    <p>Une subvention est considérée comme un 
+        <select id="q9">
+            <option value="">--Choix--</option>
+            <option value="produit">produit</option>
+            <option value="charge">charge</option>
+            <option value="passif">passif</option>
+        </select> dans les comptes.
+    </p>
+</div>
 
-  <p>La différence entre les produits et les charges constitue le 
-    <select id="q9">
-      <option value="">--Choix--</option>
-      <option value="résultat">résultat</option>
-      <option value="passif">passif</option>
-      <option value="budget">budget</option>
-    </select>.
-  </p>
+<button id="nextButton" class="hidden" onclick="window.location.href='enigme4.html'">Passer à l'énigme suivante</button>
 
-  <p>Une subvention est considérée comme un 
-    <select id="q10">
-      <option value="">--Choix--</option>
-      <option value="produit">produit</option>
-      <option value="charge">charge</option>
-      <option value="passif">passif</option>
-    </select> dans les comptes.
-  </p>
+<script>
+    // Sécurité : vérifier si énigme 2 est réussie
+    if (localStorage.getItem('enigme2') !== 'success') {
+        alert('Vous devez réussir l\'énigme 2 avant d\'accéder à celle-ci.');
+        window.location.href = 'enigme2.html';
+    }
 
-  <button onclick="verifierEnigme()">Vérifier mes réponses</button>
+    const correctAnswers = {
+        question: "BITCOIN",
+        rebus: "TO HAVE A FROG IN ONE'S THROAT",
+        texteATrou: [
+            "référence",
+            "valeur",
+            "d'exploitation",
+            "ressources",
+            "20%",
+            "obligatoire",
+            "passif",
+            "résultat",
+            "produit"
+        ]
+    };
 
-  <p id="successMessage">Bravo ! Toutes les réponses sont correctes.</p>
-  <p id="errorMessage">Dommage, certaines réponses sont incorrectes ou incomplètes. Réessaie !</p>
-  <a id="nextLink" href="enigme4.html">Passer à l'énigme suivante</a>
+    function checkPart1() {
+        const questionInput = document.getElementById('questionInput').value.trim().toUpperCase();
+        const rebusInput = document.getElementById('rebusInput').value.trim().toUpperCase().replace(/\u2019/g, "'");
 
-  <script>
-    function verifierEnigme() {
-      // Partie 1
-      const petitDej = document.getElementById('questionPetitDej').value.trim().toUpperCase();
-      const reponsePetitDejOk = petitDej === "BITCOIN";
+        return questionInput === correctAnswers.question &&
+            rebusInput === correctAnswers.rebus;
+    }
 
-      const rebus = document.getElementById('rebus').value.trim().toUpperCase();
-      const reponseCorrecteRebus = "TO HAVE A FROG IN ONE'S THROAT";
-      const rebusSansApostrophe = rebus.replace(/'/g, "");
-      const correctRebusSansApostrophe = reponseCorrecteRebus.replace(/'/g, "");
-      const rebusOk = rebusSansApostrophe === correctRebusSansApostrophe;
-
-      const partie1Ok = reponsePetitDejOk && rebusOk;
-
-      // Partie 2
-      const bonnesReponses = {
-        q2: 'référence',
-        q3: 'valeur',
-        q4: "d'exploitation",
-        q5: 'ressources',
-        q6: '20%',
-        q7: 'obligatoire',
-        q8: 'passif',
-        q9: 'résultat',
-        q10: 'produit'
-      };
-
-      let partie2Ok = true;
-      for (let question in bonnesReponses) {
-        const reponse = document.getElementById(question).value;
-        if (reponse !== bonnesReponses[question]) {
-          partie2Ok = false;
-          break;
+    function checkPart2() {
+        const answers = correctAnswers.texteATrou;
+        for (let i = 0; i < answers.length; i++) {
+            const select = document.getElementById('q' + (i + 1));
+            if (select.value !== answers[i]) {
+                return false;
+            }
         }
-      }
-
-      // Affichage des messages
-      if (partie1Ok && partie2Ok) {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'inline-block';
-        localStorage.setItem('enigme3_reussie', 'true');
-      } else {
-        document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'none';
-      }
+        return true;
     }
 
-    // Sécurité énigme 2
-    if (!localStorage.getItem('enigme2_reussie')) {
-      window.location.href = 'index.html';
+    function checkAll() {
+        if (checkPart1() && checkPart2()) {
+            document.getElementById('nextButton').classList.remove('hidden');
+            localStorage.setItem('enigme3', 'success');
+        }
     }
-  </script>
+
+    // Écouteurs d'événements
+    document.getElementById('questionInput').addEventListener('input', checkAll);
+    document.getElementById('rebusInput').addEventListener('input', checkAll);
+
+    for (let i = 1; i <= correctAnswers.texteATrou.length; i++) {
+        document.getElementById('q' + i).addEventListener('change', checkAll);
+    }
+</script>
+
 </body>
 </html>
