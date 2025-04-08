@@ -40,6 +40,14 @@
       font-weight: bold;
       display: none;
     }
+    #nextEnigmaButton {
+      display: none;
+      margin-top: 20px;
+      background-color: #2980b9;
+    }
+    #nextEnigmaButton:hover {
+      background-color: #2471a3;
+    }
   </style>
 </head>
 <body>
@@ -74,8 +82,8 @@
   <p>Les amortissements concernent la perte de 
     <select id="q3">
       <option value="">--Choix--</option>
-      <option value="durée">durée</option>
       <option value="valeur">valeur</option>
+      <option value="durée">durée</option>
       <option value="quantité">quantité</option>
     </select> des biens.
   </p>
@@ -92,9 +100,9 @@
   <p>Les produits correspondent aux 
     <select id="q5">
       <option value="">--Choix--</option>
-      <option value="dettes">dettes</option>
-      <option value="dépenses">dépenses</option>
       <option value="ressources">ressources</option>
+      <option value="dépenses">dépenses</option>
+      <option value="dettes">dettes</option>
     </select> de l'association.
   </p>
 
@@ -119,8 +127,8 @@
   <p>Un bilan comptable est constitué de l'actif et du 
     <select id="q8">
       <option value="">--Choix--</option>
-      <option value="produit">produit</option>
       <option value="passif">passif</option>
+      <option value="produit">produit</option>
       <option value="résultat">résultat</option>
     </select>.
   </p>
@@ -147,6 +155,8 @@
 
   <p id="successMessage">Bravo ! Toutes les réponses sont correctes.</p>
   <p id="errorMessage">Dommage, certaines réponses sont incorrectes ou incomplètes. Réessaie !</p>
+
+  <button id="nextEnigmaButton" onclick="location.href='enigme4.html'">Passer à l'énigme suivante</button>
 
   <script>
     function verifierEnigme() {
@@ -194,11 +204,14 @@
       if (partie1Ok && partie2Ok) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
+        document.getElementById('nextEnigmaButton').style.display = 'inline-block'; // On affiche le bouton !
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('nextEnigmaButton').style.display = 'none'; // On cache le bouton si erreurs
       }
     }
   </script>
+
 </body>
 </html>
