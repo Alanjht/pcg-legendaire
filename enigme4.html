@@ -15,15 +15,13 @@
       color: #2c3e50;
     }
     .image-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
       margin-bottom: 20px;
+      text-align: center;
     }
     .image-container img {
-      width: 200px;
-      height: 150px;
-      margin: 10px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
     }
     .hint {
       margin-top: 10px;
@@ -81,24 +79,26 @@
   </p>
 
   <div class="image-container">
-    <div>
-      <img src="emplacement1.jpg" alt="Emplacement 1" />
-      <div class="hint">Le nombre finit par la racine carrée de 25</div>
-    </div>
-    <div>
-      <img src="emplacement2.jpg" alt="Emplacement 2" />
-    </div>
-    <div>
-      <img src="emplacement3.jpg" alt="Emplacement 3" />
-      <div class="hint">Choisis le nombre qui a la médaille de bronze</div>
-    </div>
-    <div>
-      <img src="emplacement4.jpg" alt="Emplacement 4" />
-    </div>
-    <div>
-      <img src="emplacement5.jpg" alt="Emplacement 5" />
-      <div class="hint">Par dessus le muret, soudain j'ai vu, passer le nombre sauvage</div>
-    </div>
+    <img src="emplacement1.jpg" alt="Emplacement 1" />
+    <div class="hint">Le nombre finit par la racine carrée de 25</div>
+  </div>
+
+  <div class="image-container">
+    <img src="emplacement2.jpg" alt="Emplacement 2" />
+  </div>
+
+  <div class="image-container">
+    <img src="emplacement3.jpg" alt="Emplacement 3" />
+    <div class="hint">Choisis le nombre qui a la médaille de bronze</div>
+  </div>
+
+  <div class="image-container">
+    <img src="emplacement4.jpg" alt="Emplacement 4" />
+  </div>
+
+  <div class="image-container">
+    <img src="emplacement5.jpg" alt="Emplacement 5" />
+    <div class="hint">Par dessus le muret, soudain j'ai vu, passer le nombre sauvage</div>
   </div>
 
   <div class="input-container">
