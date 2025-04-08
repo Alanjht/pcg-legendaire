@@ -40,15 +40,6 @@
       font-weight: bold;
       display: none;
     }
-    #nextLink {
-      display: none; /* Le lien est caché au début */
-      margin-top: 20px;
-      background-color: #2980b9;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      display: inline-block;
-    }
   </style>
 </head>
 <body>
@@ -156,7 +147,6 @@
 
   <p id="successMessage">Bravo ! Toutes les réponses sont correctes.</p>
   <p id="errorMessage">Dommage, certaines réponses sont incorrectes ou incomplètes. Réessaie !</p>
-  <a id="nextLink" href="enigme4.html">Passer à l'énigme suivante</a>
 
   <script>
     function verifierEnigme() {
@@ -204,12 +194,9 @@
       if (partie1Ok && partie2Ok) {
         document.getElementById('successMessage').style.display = 'block';
         document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'inline-block'; // Afficher le lien vers l'énigme suivante
-        localStorage.setItem('enigme3_reussie', 'true');
       } else {
         document.getElementById('errorMessage').style.display = 'block';
         document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextLink').style.display = 'none'; // Ne pas afficher le lien si les réponses sont incorrectes
       }
     }
   </script>
