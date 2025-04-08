@@ -24,6 +24,7 @@
       border: 1px solid #ddd;
       padding: 12px;
       text-align: center;
+      height: 60px;
     }
     th {
       background-color: #2c3e50;
@@ -31,7 +32,7 @@
     }
     .dropzone {
       min-height: 40px;
-      background-color: #ecf0f1;
+      background-color: white;
       border: 2px dashed #bdc3c7;
       display: flex;
       align-items: center;
@@ -51,6 +52,7 @@
       color: green;
       font-weight: bold;
       display: none;
+      margin-top: 10px;
     }
     button {
       padding: 10px 20px;
@@ -59,18 +61,23 @@
       border: none;
       cursor: pointer;
       margin-top: 20px;
+      margin-right: 10px;
     }
     button:hover {
       background-color: #219150;
     }
-    #nextLink {
-      display: none;
+    #elements {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
       margin-top: 20px;
+    }
+    #nextButton {
+      display: none;
       background-color: #2980b9;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      display: inline-block;
+    }
+    #nextButton:hover {
+      background-color: #1c5980;
     }
   </style>
 </head>
@@ -88,19 +95,19 @@
     </tr>
     <tr>
       <td class="dropzone" data-answer="2183"></td>
-      <td>Ordinateur</td>
+      <td class="dropzone" data-answer="Ordinateur"></td>
       <td class="dropzone" data-answer="1200"></td>
       <td></td>
     </tr>
     <tr>
       <td class="dropzone" data-answer="44562"></td>
-      <td>TVA déductible</td>
+      <td class="dropzone" data-answer="TVA déductible"></td>
       <td class="dropzone" data-answer="240"></td>
       <td></td>
     </tr>
     <tr>
       <td class="dropzone" data-answer="512"></td>
-      <td>Banque</td>
+      <td class="dropzone" data-answer="Banque"></td>
       <td></td>
       <td class="dropzone" data-answer="1440"></td>
     </tr>
@@ -108,17 +115,38 @@
 
   <h3>Éléments à placer :</h3>
   <div id="elements">
+    <!-- Comptes corrects -->
     <div class="draggable" draggable="true">2183</div>
     <div class="draggable" draggable="true">44562</div>
     <div class="draggable" draggable="true">512</div>
+    <!-- Libellés -->
+    <div class="draggable" draggable="true">Ordinateur</div>
+    <div class="draggable" draggable="true">TVA déductible</div>
+    <div class="draggable" draggable="true">Banque</div>
+    <!-- Montants -->
     <div class="draggable" draggable="true">1200</div>
     <div class="draggable" draggable="true">240</div>
     <div class="draggable" draggable="true">1440</div>
+    <!-- Pièges comptes -->
+    <div class="draggable" draggable="true">606</div>
+    <div class="draggable" draggable="true">401</div>
+    <div class="draggable" draggable="true">707</div>
+    <div class="draggable" draggable="true">5124</div>
+    <!-- Pièges libellés -->
+    <div class="draggable" draggable="true">Fournisseur</div>
+    <div class="draggable" draggable="true">Vente de marchandises</div>
+    <div class="draggable" draggable="true">Achats</div>
+    <!-- Pièges montants -->
+    <div class="draggable" draggable="true">800</div>
+    <div class="draggable" draggable="true">300</div>
+    <div class="draggable" draggable="true">1000</div>
   </div>
 
   <button onclick="verifier()">Vérifier mes réponses</button>
+  <button onclick="reinitialiser()">Réinitialiser</button>
+  <button id="nextButton" onclick="window.location.href='enigme5.html'">Passer à l'énigme suivante</button>
+
   <p id="successMessage">Bravo ! Tu as correctement reconstitué l'écriture comptable.</p>
-  <a id="nextLink" href="enigme5.html">Passer à l'énigme suivante</a>
 
   <script>
     const draggables = document.querySelectorAll('.draggable');
@@ -149,11 +177,19 @@
 
       if (correct) {
         document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('nextLink').style.display = 'inline-block';
+        document.getElementById('nextButton').style.display = 'inline-block';
         localStorage.setItem('enigme4_reussie', 'true');
       } else {
         alert('Certaines cases sont incorrectes ou vides, réessaie !');
       }
+    }
+
+    function reinitialiser() {
+      dropzones.forEach(zone => {
+        zone.textContent = '';
+      });
+      document.getElementById('successMessage').style.display = 'none';
+      document.getElementById('nextButton').style.display = 'none';
     }
 
     // Sécurité énigme 3
