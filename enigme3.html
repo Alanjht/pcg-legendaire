@@ -158,65 +158,7 @@
 
   <button id="nextEnigmaButton" onclick="verifierEtPasser()">Passer à l'énigme suivante</button>
 
-  <script>
-    function verifierEnigme() {
-      // Partie 1
-      const petitDej = document.getElementById('questionPetitDej').value.trim().toUpperCase();
-      const reponsePetitDejOk = petitDej === "BITCOIN";
-
-      const rebus = document.getElementById('rebus').value.trim().toUpperCase();
-      const reponseCorrecteRebus = "TO HAVE A FROG IN ONE'S THROAT";
-     const nettoieTexte = (texte) => texte.replace(/['’‘`´]/g, "").trim();
-	 const rebusSansApostrophe = nettoieTexte(rebus);
-	 const correctRebusSansApostrophe = nettoieTexte(reponseCorrecteRebus);
-
-      const rebusOk = rebusSansApostrophe === correctRebusSansApostrophe;
-
-      const partie1Ok = reponsePetitDejOk && rebusOk;
-
-      // Partie 2
-      const bonnesReponses = {
-        q2: 'référence',
-        q3: 'valeur',
-        q4: "d'exploitation",
-        q5: 'ressources',
-        q6: '20%',
-        q7: 'obligatoire',
-        q8: 'passif',
-        q9: 'résultat',
-        q10: 'produit'
-      };
-
-      let partie2Ok = true;
-      for (let question in bonnesReponses) {
-        const reponse = document.getElementById(question).value;
-        if (reponse !== bonnesReponses[question]) {
-          partie2Ok = false;
-          break;
-        }
-      }
-
-      if (partie1Ok && partie2Ok) {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextEnigmaButton').style.display = 'inline-block'; // On affiche le bouton !
-        localStorage.setItem('enigme3_reussie', 'true'); // On marque l'énigme 3 comme réussie
-      } else {
-        document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextEnigmaButton').style.display = 'none'; // On cache le bouton si erreurs
-      }
-    }
-
-    function verifierEtPasser() {
-      // On vérifie si l'énigme 3 est réussie avant de passer à l'énigme 4
-      if (localStorage.getItem('enigme3_reussie') === 'true') {
-        location.href = 'enigme4.html'; // On passe à l'énigme 4
-      } else {
-        alert("Tu dois résoudre l'énigme 3 avant de passer à l'énigme 4.");
-      }
-    }
-  </script>
+<script src="enigme".js"></script>
 
 </body>
 </html>
