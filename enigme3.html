@@ -166,8 +166,10 @@
 
       const rebus = document.getElementById('rebus').value.trim().toUpperCase();
       const reponseCorrecteRebus = "TO HAVE A FROG IN ONE'S THROAT";
-      const rebusSansApostrophe = rebus.replace(/'/g, "");
-      const correctRebusSansApostrophe = reponseCorrecteRebus.replace(/'/g, "");
+     const nettoieTexte = (texte) => texte.replace(/['’‘`´]/g, "").trim();
+	 const rebusSansApostrophe = nettoieTexte(rebus);
+	 const correctRebusSansApostrophe = nettoieTexte(reponseCorrecteRebus);
+
       const rebusOk = rebusSansApostrophe === correctRebusSansApostrophe;
 
       const partie1Ok = reponsePetitDejOk && rebusOk;
