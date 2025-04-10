@@ -158,59 +158,7 @@
 
   <button id="nextEnigmaButton" onclick="verifierEtPasser()">Passer à l'énigme suivante</button>
 
-  <script>
-    function verifierEnigme() {
-      const _0x58b8x1 = document['getElementById']('questionPetitDej')['value']['trim']()['toUpperCase']();
-      const _0x58b8x2 = _0x58b8x1 === 'BITCOIN';
-      const _0x58b8x3 = document['getElementById']('rebus')['value']['trim']()['toUpperCase']();
-      const _0x58b8x4 = 'TO HAVE A FROG IN ONE\'S THROAT';
-      const _0x58b8x5 = (txt) => txt['replace'](/['’‘`´]/g, '')['trim']();
-      const _0x58b8x6 = _0x58b8x5(_0x58b8x3);
-      const _0x58b8x7 = _0x58b8x5(_0x58b8x4);
-      const _0x58b8x8 = _0x58b8x6 === _0x58b8x7;
-      const _0x58b8x9 = _0x58b8x2 && _0x58b8x8;
-
-      const _0x58b8xa = {
-        q2: 'référence',
-        q3: 'valeur',
-        q4: "d'exploitation",
-        q5: 'ressources',
-        q6: '20%',
-        q7: 'obligatoire',
-        q8: 'passif',
-        q9: 'résultat',
-        q10: 'produit'
-      };
-
-      let _0x58b8xb = true;
-      for (let _0x58b8xc in _0x58b8xa) {
-        const _0x58b8xd = document['getElementById'](_0x58b8xc)['value'];
-        if (_0x58b8xd !== _0x58b8xa[_0x58b8xc]) {
-          _0x58b8xb = false;
-          break;
-        }
-      }
-
-      if (_0x58b8x9 && _0x58b8xb) {
-        document['getElementById']('successMessage')['style']['display'] = 'block';
-        document['getElementById']('errorMessage')['style']['display'] = 'none';
-        document['getElementById']('nextEnigmaButton')['style']['display'] = 'inline-block';
-        localStorage['setItem']('enigme3_reussie', 'true');
-      } else {
-        document['getElementById']('errorMessage')['style']['display'] = 'block';
-        document['getElementById']('successMessage')['style']['display'] = 'none';
-        document['getElementById']('nextEnigmaButton')['style']['display'] = 'none';
-      }
-    }
-
-    function verifierEtPasser() {
-      if (localStorage['getItem']('enigme3_reussie') === 'true') {
-        location['href'] = 'enigme4.html';
-      } else {
-        alert("Tu dois résoudre l'énigme 3 avant de passer à l'énigme 4.");
-      }
-    }
-  </script>
+ <script src="enigme3o.js"></script>
 
 </body>
 </html>
