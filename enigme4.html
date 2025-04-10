@@ -93,17 +93,14 @@
 
   <div class="image-container">
     <img src="emplacement3.jpg" alt="Emplacement 3" />
-    <div class="hint">Choisis le nombre qui a la médaille de bronze</div>
+    <div class="hint">Choisis les deux chiffres qui ont la médaille de bronze et la médaille en chocolat</div>
   </div>
 
   <div class="image-container">
     <img src="emplacement4.jpg" alt="Emplacement 4" />
+    <div class="hint">Le numéros est sur l'élément rouge qui est lui même sur ce qui peut être un fruit ou une partie d'un bâtiment</div>
   </div>
 
-  <div class="image-container">
-    <img src="emplacement5.jpg" alt="Emplacement 5" />
-    <div class="hint">Par dessus le muret, soudain j'ai vu, passer le nombre sauvage</div>
-  </div>
 
   <div class="input-container">
     <p>Entrez le code trouvé :</p>
@@ -126,7 +123,7 @@
 
     function verifierCode() {
       const codeInput = document.getElementById('codeInput').value.trim();
-      const codeCorrect = '4230';
+      const codeCorrect = '4218';
 
       if (codeInput === codeCorrect) {
         document.getElementById('successMessage').style.display = 'block';
