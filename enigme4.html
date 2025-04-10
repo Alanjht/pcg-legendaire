@@ -115,27 +115,7 @@
     <a id="nextButton" href="enigme5.html">Passer à l'énigme suivante</a>
   </div>
 
-  <script>
-    // Sécurité pour vérifier si l'énigme précédente a été résolue
-    if (!localStorage.getItem('enigme3_reussie')) {
-      window.location.href = 'index.html'; // Rediriger vers la page d'accueil si l'énigme 3 n'est pas réussie
-    }
-
-    function verifierCode() {
-      const codeInput = document.getElementById('codeInput').value.trim();
-      const codeCorrect = '4218';
-
-      if (codeInput === codeCorrect) {
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        document.getElementById('nextButton').style.display = 'inline-block'; // Afficher le bouton de la prochaine énigme
-      } else {
-        document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('nextButton').style.display = 'none'; // Masquer le bouton si la réponse est incorrecte
-      }
-    }
-  </script>
+<script src="enigme4o.js"></script>
 
 </body>
 </html>
